@@ -2,6 +2,11 @@
 
 namespace System;
 
+/**
+ * Http front controller
+ * 
+ * @author Gevorg Makaryan <makaryan.gevorg@gmail.com>
+ */
 class HttpFrontController
 {
     /**
@@ -29,16 +34,64 @@ class HttpFrontController
     private $server;
     
     /**
+     *
+     * @var \Smarty
+     */
+    private $view;
+    
+    /**
+     *
+     * @var \System\Model
+     */
+    private $model;
+    
+    /**
+     *
+     * @var \System\Config
+     */
+    private $config;
+    
+    /**
      * Constructor of the class
      */
     public function __construct()
     {
+        // Global variables
         $this->session = $_SESSION;
         $this->get     = $_GET;
         $this->post    = $_POST;
         $this->server  = $_SERVER;
+        
+        $this->init();
     }
     
+    /**
+     * Init basic system classes
+     * 
+     * @return void
+     */
+    final private function init()
+    {
+        $this->view   = new \System\View();
+        $this->model  = new \System\Model();
+        $this->config = new \System\Config();
+    }
+    
+    /**
+     * Gets view object
+     * 
+     * @return \Smarty
+     */
+    public function getView()
+    {
+        return $this->view;
+    }
+    
+    public function getModel()
+    {
+        
+    }
+
     /**
      * Gets the session key from $_SESSION array or all $_SESSION array
      * 
