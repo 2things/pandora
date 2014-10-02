@@ -87,9 +87,24 @@ class HttpFrontController
         return $this->view;
     }
     
+    /**
+     * Gets the Model object
+     * 
+     * @return \System\Model
+     */
     public function getModel()
     {
-        
+        return $this->model;
+    }
+    
+    /**
+     * Gets the Config class
+     * 
+     * @return \System\Config
+     */
+    public function getConfig()
+    {
+        return $this->config;
     }
 
     /**

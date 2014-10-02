@@ -2,6 +2,8 @@
 
 define('ENV', 'dev');
 
+session_start();
+
 $root = dirname(__DIR__);
 
 define('PATH_ROOT', $root);
@@ -17,4 +19,8 @@ require_once $root . '/System/Bootstrap.php';
 $bootstrap = new \System\Bootstrap();
 $runable = $bootstrap->run($_SERVER);
 
-var_dump($runable);
+$controller = '\\App\\Controller\\' . $runable['controller'];
+$action     = $runable['action'];
+
+$execute = new $controller();
+$execute->$action();

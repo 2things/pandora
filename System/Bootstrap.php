@@ -44,10 +44,10 @@ class Bootstrap
      */
     public function __construct()
     {
-        $this->errorController   = 'errorController';
+        $this->errorController   = 'ErrorController';
         $this->error500Action    = 'error500Action';
         $this->error404Action    = 'error404Action';
-        $this->defaultController = 'indexController';
+        $this->defaultController = 'IndexController';
         $this->defaultAction     = 'indexAction';
     }
     

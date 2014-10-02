@@ -20,7 +20,7 @@ class View
      */
     public function __construct()
     {
-        $this->smarty = new Smarty();
+        $this->smarty = new \Smarty();
         
         $this->smarty->template_dir = PATH_VIEW . '/';
         $this->smarty->compile_dir  = PATH_ROOT . '/../tmp/Smarty/compile/';
