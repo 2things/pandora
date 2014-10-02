@@ -2,6 +2,11 @@
 
 namespace System;
 
+/**
+ * Bootstrap class
+ * 
+ * @author Gevorg Makaryan <makaryan.gevorg@gmail.com>
+ */
 class Bootstrap
 {
     /**
