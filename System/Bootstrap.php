@@ -40,6 +40,18 @@ class Bootstrap
     private $defaultAction;
     
     /**
+     *
+     * @var string
+     */
+    public static $appControllerNamespace = '\\App\\Controller\\';
+            
+    /**
+     *
+     * @var string
+     */
+    public static $appModelNamespace = '\\App\\Model\\';
+    
+    /**
      * Constructor of the class
      */
     public function __construct()
@@ -79,7 +91,8 @@ class Bootstrap
             return array('controller' => $this->errorController, 'action' => $this->error404Action);
         }
         
-        if (!method_exists(new $controller, $action)) {
+        $controllerClass = self::$appControllerNamespace . $controller;
+        if (!method_exists(new $controllerClass(), $action)) {
             return array('controller' => $this->errorController, 'action' => $this->error404Action);
         }
         
