@@ -7,12 +7,14 @@ class errorController extends System\HttpFrontController
 {
     public function error404Action()
     {
-        // render 404 here
+        echo '404 not found';
+        exit;
     }
     
     public function error500Action()
     {
-        // render 500 here
+        echo '500 server internal error';
+        exit;
     }
 }
 

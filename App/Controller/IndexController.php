@@ -7,7 +7,12 @@ class IndexController extends System\HttpFrontController
 {
     public function indexAction()
     {
-        echo 'It works!';
+        $htmlHead   = $this->getView()->getHtmlHead();
+        $htmlFooter = $this->getView()->getHtmlFooter();
+        
+        $this->getView()->setVariable('htmlHead', $htmlHead);
+        $this->getView()->setVariable('htmlFooter', $htmlFooter);
+        $this->getView()->getSmarty()->display('Index/index.tpl');
     }
 }
 

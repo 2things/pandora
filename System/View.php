@@ -25,6 +25,8 @@ class View
         $this->smarty->template_dir = PATH_VIEW . '/';
         $this->smarty->compile_dir  = PATH_ROOT . '/../tmp/Smarty/compile/';
         $this->smarty->cache_dir    = PATH_ROOT . '/../tmp/Smarty/cache/';
+        
+        $this->smarty->caching = false;
     }
     
     /**
@@ -32,8 +34,39 @@ class View
      * 
      * @return \Smarty
      */
-    public function getView()
+    public function getSmarty()
     {
         return $this->smarty;
+    }
+    
+    /**
+     * Sets the variable to template
+     * 
+     * @param string $var   variable to be assigned
+     * @param mixed  $value value of the variable
+     */
+    public function setVariable($var, $value)
+    {
+        $this->smarty->assign($var, $value);
+    }
+    
+    /**
+     * Gets the html head template content
+     * 
+     * @return string HTML content of the string
+     */
+    public function getHtmlHead()
+    {
+        return $this->smarty->fetch('Head.tpl');
+    }
+    
+    /**
+     * Gets the html footer template content
+     * 
+     * @return string HTML content of the string
+     */
+    public function getHtmlFooter()
+    {
+        return $this->smarty->fetch('Footer.tpl');
     }
 }
