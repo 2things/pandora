@@ -69,4 +69,16 @@ class View
     {
         return $this->smarty->fetch('Footer.tpl');
     }
+    
+    /**
+     * Renders a json
+     * 
+     * @param array $array
+     */
+    public function renderJson($array)
+    {
+        header('Content-type: application/json');
+        echo json_encode($array);
+        exit;
+    }
 }
