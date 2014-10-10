@@ -47,6 +47,18 @@ class HttpFrontController
     
     /**
      *
+     * @var \System\Helper
+     */
+    private $helper;
+    
+    /**
+     *
+     * @var \System\Translation
+     */
+    private $translation;
+    
+    /**
+     *
      * @var \System\Config
      */
     private $config;
@@ -72,9 +84,24 @@ class HttpFrontController
      */
     final private function init()
     {
-        $this->view   = new \System\View();
-        $this->model  = new \System\Model();
-        $this->config = new \System\Config();
+        $this->view        = new \System\View();
+        $this->model       = new \System\Model();
+        $this->config      = new \System\Config();
+        $this->helper      = new \System\Helper();
+        $this->translation = new \System\Translation();
+    }
+    
+    /**
+     * Redirects to the provided url
+     * 
+     * @param string $url
+     * 
+     * @return void
+     */
+    public function redirect($url)
+    {
+        header("Location: $url");
+        die();
     }
     
     /**
@@ -95,6 +122,26 @@ class HttpFrontController
     public function getModel()
     {
         return $this->model;
+    }
+    
+    /**
+     * Gets the Helper object
+     * 
+     * @return \System\Helper
+     */
+    public function getHelper()
+    {
+        return $this->helper;
+    }
+    
+    /**
+     * Gets the Translation object
+     * 
+     * @return \System\Translation
+     */
+    public function getTranslation()
+    {
+        return $this->translation;
     }
     
     /**
