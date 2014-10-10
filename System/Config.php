@@ -38,16 +38,19 @@ class Config
      * 
      * @throws \Exception
      */
-    public function get($key, $fromEnv)
+    public function get($key, $fromEnv = null)
     {
+        if (is_null($fromEnv)) {
+            $fromEnv = ENV;
+        }
         if (!isset($this->options[$fromEnv])) {
             throw new \Exception('Undefined environment variable');
         }
-        if (!isset($this->options[$fromEnv][$get])) {
+        if (!isset($this->options[$fromEnv][$key])) {
             throw new \Exception('Undefined configuration option');
         }
         
-        return $this->options[$fromEnv][$get];
+        return $this->options[$fromEnv][$key];
     }
 }
 
