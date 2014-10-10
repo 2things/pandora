@@ -38,8 +38,19 @@ class Model
      */
     public function get($model)
     {
-        $modelFull = '\\App\\Model\\' . $model;
+        $modelFull = '\\App\\Model\\' . ucfirst($model);
         return new $modelFull($this->config);
+    }
+    
+    /**
+     * Gets the database Object
+     * 
+     * @return \PDO
+     */
+    public function getDb()
+    {
+        $dbConfig = $this->getConfig()->get('db');
+        return new \PDO('mysql:dbname=' . $dbConfig['name'] . ';host=' . $dbConfig['host'], $dbConfig['user'], $dbConfig['pass']);
     }
     
     /**
