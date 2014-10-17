@@ -13,12 +13,7 @@ class FeedController extends \System\HttpFrontController
     }
     
     public function dailyAction()
-    {        
-        $htmlHead   = $this->getView()->getHtmlHead();
-        $htmlFooter = $this->getView()->getHtmlFooter();
-        
-        $this->getView()->setVariable('htmlHead', $htmlHead);
-        $this->getView()->setVariable('htmlFooter', $htmlFooter);
+    {
         $this->getView()->getSmarty()->display('Feed/Daily.tpl');
     }
     

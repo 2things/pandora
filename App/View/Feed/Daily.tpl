@@ -1,6 +1,5 @@
 <!DOCTYPE HTML>
 <html>
-    {$htmlHead}
     <body>
         <script type="text/javascript" src="/js/library/angular-1.2.15.js"></script>
         <script type="text/javascript" src="/js/App/Goal/Goal.js"></script>
@@ -11,7 +10,6 @@
                     
                 </li>
             </ul>
-        </div>
-	{$htmlFooter}		
+        </div>	
     </body>
 </html>
