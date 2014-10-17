@@ -203,6 +203,16 @@ class HttpFrontController
     }
     
     /**
+     * Gets the PHP input straem
+     * 
+     * @return JSON
+     */
+    final protected function getInputStream()
+    {
+        return json_decode(file_get_contents("php://input"));
+    }
+    
+    /**
      * Gets the server key from $_SERVER array or all $_SERVER array
      * 
      * @param string $key
