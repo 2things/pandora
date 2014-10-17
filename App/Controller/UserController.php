@@ -19,23 +19,15 @@ class UserController extends \System\HttpFrontController
         if (\App\Model\User::isAuthorized()) {
             $this->getView()->renderJson(array('status' => 0, 'html' => ''));
         }
-        
-        $username   = $this->getPost('username');
-        $email      = $this->getPost('email');
-        $password   = $this->getPost('password');
-        $passRepeat = $this->getPost('password-repeat');
-        
+
+        $email      = (isset($this->getInputStream()->email)) ? $this->getInputStream()->email : $this->getPost('email');
+        $username   = (isset($this->getInputStream()->username)) ? $this->getInputStream()->username : $this->getPost('username');
+        $password   = (isset($this->getInputStream()->password)) ? $this->getInputStream()->password : $this->getPost('password');
+        $passRepeat = (isset($this->getInputStream()->passwordRepeat)) ? $this->getInputStream()->passwordRepeat : $this->getPost('password-repeat');
+
         $userModel   = new \App\Model\User();
         $userHelper  = $this->getHelper()->getUser();
         $translation = $this->getTranslation()->get('eng');
-        
-        if (!$userHelper->isUsernameValid($username)) {
-            $this->getView()->renderJson(array('status' => -1, 'html' => $translation['signup']['invalidUsername']));
-        }
-        
-        if ($userModel->isUsernameExist($username)) {
-            $this->getView()->renderJson(array('status' => -1, 'html' => $translation['signup']['usernameExist']));
-        }
         
         if (!$userHelper->isEmailValid($email)) {
             $this->getView()->renderJson(array('status' => -1, 'html' => $translation['signup']['invalidEmail']));
@@ -43,6 +35,14 @@ class UserController extends \System\HttpFrontController
         
         if ($userModel->isEmailExist($email)) {
             $this->getView()->renderJson(array('status' => -1, 'html' => $translation['signup']['emailExist']));
+        }
+        
+        if (!$userHelper->isUsernameValid($username)) {
+            $this->getView()->renderJson(array('status' => -1, 'html' => $translation['signup']['invalidUsername']));
+        }
+        
+        if ($userModel->isUsernameExist($username)) {
+            $this->getView()->renderJson(array('status' => -1, 'html' => $translation['signup']['usernameExist']));
         }
         
         if (empty($password)) {
