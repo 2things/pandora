@@ -18,6 +18,22 @@
     <body>
         <div class="body">
             <div class="main-container">
+                <div class="main-navigation">
+                    <ul class="inline-menu">
+                        <li>
+                            <a href="/static/about"><span>About 2things</span></a>
+                        </li>
+                        <li>
+                            <a href="/static/privacy"><span>Privacy</span></a>
+                        </li>
+                        <li>
+                            <a href="/static/featurelist"><span>Feature list</span></a>
+                        </li>
+                        <li>
+                            <a href="/static/faq"><span>FAQ</span></a>
+                        </li>
+                    </ul>
+                </div>
                 <div class="intro-auth" data-ng-app="app" data-ng-controller="UserController">
                     <div class="logo-container">
                         <a href="index.html">
@@ -25,10 +41,10 @@
                         </a>
                     </div>
                     <div class='title'>
-                        <span class="main-title">Don't worry you can reach your goals and socialize with friends simultaneously.</span>
-                        <span class="sub-title">Your friend in online world and your truly assistant in real world.</span>
+                        <span class="main-title">Your friend in online world and your truly assistant in real world.</span>
+                        <span class="sub-title">Don't worry you can reach your goals and socialize with friends simultaneously.</span>
                     </div>
-                    <div class="title-hint"><span>There are just&nbsp;</span><div class="title-logo"></div><span>&nbsp;...</span></div>
+                    <div class="title-hint"><span>There are just&nbsp;</span><div class="title-logo"></div><span>&nbsp;things...</span></div>
                     <div class="login">
                         <form name="loginForm" id="login-form" class="form" action="/user/login" method="post" data-ng-submit="login.doLogin($event)">
                             <div class="error login-common-error" data-ng-show="login.message.show">{literal} {{ login.message.error }} {/literal}</div>
@@ -49,6 +65,7 @@
                         <div class="word-or">or</div>
                     </div>
                     <div class="signup">
+                        <a id="signup-anchor"></a>
                         <form name="signupForm" id="signup-form" action="/user/signup" method="post" data-ng-submit="signup.doSignup($event)">
                             <div class="error" data-ng-show="signup.message.show">{literal} {{ signup.message.error }} {/literal}</div>
                             <div class="form-text-field">
@@ -68,7 +85,7 @@
                             </div>
                         </form>
                     </div>
-                    <div class="title-hint"><span>... and you are done!</span></div>
+                    <div class="title-hint you-are-done"><span>... and you are done!</span></div>
                 </div>
             </div>
             <div class="cover-dark"></div>
