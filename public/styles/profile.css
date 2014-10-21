@@ -1,0 +1,72 @@
+.personal-info {
+    float: left;
+    width: 300px;
+    overflow: auto;
+}
+
+.portlet {
+    padding: 12px 20px 15px 20px;
+    min-height: 30px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    background: none repeat scroll 0 0 #FFFFFF;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
+}
+
+.profile-userpic img {
+    float: none;
+    margin: 0 auto;
+    width: 50%;
+    height: 50%;
+    -webkit-border-radius: 50% !important;
+    -moz-border-radius: 50% !important;
+    border-radius: 50% !important;
+}
+
+.profile-usertitle {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.profile-usertitle-name {
+    color: #5a7391;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 7px;
+}
+
+.profile-usertitle-job {
+    text-transform: uppercase;
+    color: #5b9bd1;
+    font-size: 13px;
+    font-weight: 800;
+    margin-bottom: 7px;
+}
+
+.profile-userbuttons {
+    text-align: center;
+}
+
+.btn-follow {
+    background-image: linear-gradient(#e3262e, #ab171e);
+    background-color: #ab171e;
+    border-bottom-color: #820a0f;
+    border-left-color: #9a1015;
+    border-right-color: #9a1015;
+    border-top-color: #af151b;
+    outline: none;
+    color: #fff;
+}
+
+.btn-message {
+    background-color: #0078e7;
+    background: linear-gradient(#0066FF, #0047B2);
+    border: 1px solid rgba(5, 37, 105, 0.64);
+    color: #fff;
+    outline: none;
+}
+
+.personal-info .portlet:nth-child(2) {
+    margin-top: 15px;
+}
