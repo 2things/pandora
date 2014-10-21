@@ -227,5 +227,17 @@ class HttpFrontController
         
         return (isset($this->server[$key])) ? $this->server[$key] : null;
     }
+    
+    final protected function show404()
+    {
+        $this->getView()->setVariable('isAuthorized', \App\Model\User::isAuthorized());
+        $this->getView()->getSmarty()->display('Error/404.tpl');
+    }
+    
+    final protected function show500()
+    {
+        $this->getView()->setVariable('isAuthorized', \App\Model\User::isAuthorized());
+        $this->getView()->getSmarty()->display('Error/500.tpl');
+    }
 }
 
