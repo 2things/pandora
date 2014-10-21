@@ -16,6 +16,7 @@
         <script type="text/javascript" src="/js/App/Controller/User.js"></script>
     </head>
     <body>
+        <img src="/images/bg/bg1.jpg" id="bg" alt="">
         <div class="body">
             <div class="main-container">
                 <div class="main-navigation">
@@ -93,17 +94,12 @@
         <script type="text/javascript">
             $(document).ready(function() {
                 $('.cover-dark').css('height', $(document).height());
+                $('.intro-auth').css('marginTop', '-' + ($('.intro-auth').height() / 2) + 'px');
                 var bgImages = ['bg2.jpg', 'bg3.jpg', 'bg4.jpg', 'bg1.jpg'];
                 var bgImagesIndex = 0;
                 var interval = setInterval(function() {
                     $('.cover-dark').animate({literal}{'opacity' : 0.1}{/literal}, 800, 'swing', function () {
-                        $('.body').css({
-                            'background': 'url(../images/bg/' + bgImages[bgImagesIndex] + ') no-repeat center center fixed',
-                            '-webkit-background-size': 'cover',
-                            '-moz-background-size': 'cover',
-                            '-o-background-size': 'cover',
-                            'background-size': 'cover',
-                        });
+                        $('#bg').attr('src', '/images/bg/' + bgImages[bgImagesIndex]);
                         $('.cover-dark').animate({literal}{'opacity' : 0.7}{/literal}, 500);
                     })
                     if (bgImagesIndex == 3) {
@@ -113,6 +109,32 @@
                     }
                 }, 15000);    
             }); 
+            
+            
+            // Background
+            $(window).load(function() {    
+
+                    var theWindow        = $(window),
+                        $bg              = $("#bg"),
+                        aspectRatio      = $bg.width() / $bg.height();
+
+                    function resizeBg() {
+
+                            if ( (theWindow.width() / theWindow.height()) < aspectRatio ) {
+                                $bg
+                                    .removeClass()
+                                    .addClass('bgheight');
+                            } else {
+                                $bg
+                                    .removeClass()
+                                    .addClass('bgwidth');
+                            }
+
+                    }
+
+                    theWindow.resize(resizeBg).trigger("resize");
+
+            });
         </script>
     </body>
 </html>

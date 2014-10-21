@@ -1,11 +1,6 @@
-.body {
-    height: 900px;
-    background: url(../images/bg/bg1.jpg) no-repeat center center fixed; 
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
+#bg { position: fixed; top: 0; left: 0; }
+.bgwidth { width: 100%; }
+.bgheight { height: 100%; }
 
 .intro-auth {
     width: 710px;
