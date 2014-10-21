@@ -33,9 +33,6 @@
     min-width: 320px;
     width: auto;
     min-height: 30px;
-    position: relative;
-    top: 75px;
-    margin: 0 auto;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;    
@@ -101,6 +98,18 @@
 
 .search-form-container {
     margin: 10px auto;
+    float: none;
+    width: 285px;
+}
+
+.search-form-container .search-field {
+    width: 260px;
+}
+
+.search-form-container .search-btn {
+    right: 3px;
+    top: 5px;
+    font-size: 18px;
 }
 
 .error404description, .error500description {

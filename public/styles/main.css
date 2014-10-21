@@ -25,6 +25,7 @@ html, body {
     text-shadow: none;
     color: transparent;
     cursor: pointer;
+    float: left;
 }
 
 .logo-container.logo-small {
@@ -256,12 +257,15 @@ html, body {
 
 .search-form-container {
     position: relative;
-    width: 285px;
+    width: 430px;
+    float: left;
+    margin-left: 25px;
+    margin-top: 8px;
 }
 
 .search-form-container input {
     position: relative;
-    width: 260px;
+    width: 405px;
     padding: 8px 10px;
     font-weight: bold;
     -webkit-border-radius: 3px;
@@ -283,4 +287,20 @@ html, body {
     right: 3px;
     top: 5px;
     font-size: 18px;
+}
+
+.main-container {
+    width: 98%;
+    min-width: 320px;
+    min-height: 30px;
+    position: relative;
+    top: 75px;
+    margin: 0 auto;
+}
+
+.img-responsive {
+    display: block;
+    width: 100% \9;
+    max-width: 100%;
+    height: auto;
 }
