@@ -45,6 +45,7 @@
                         <span class="main-title">Your friend in online world and your truly assistant in real world.</span>
                         <span class="sub-title">Don't worry you can reach your goals and socialize with friends simultaneously.</span>
                     </div>
+                    <a href="#signup-anchor" id='signup-anchor'></a>
                     <div class="title-hint"><span>There are just&nbsp;</span><div class="title-logo"></div><span>&nbsp;things...</span></div>
                     <div class="login">
                         <form name="loginForm" id="login-form" class="form" action="/user/login" method="post" data-ng-submit="login.doLogin($event)">
@@ -66,7 +67,6 @@
                         <div class="word-or">or</div>
                     </div>
                     <div class="signup">
-                        <a id="signup-anchor"></a>
                         <form name="signupForm" id="signup-form" action="/user/signup" method="post" data-ng-submit="signup.doSignup($event)">
                             <div class="error" data-ng-show="signup.message.show">{literal} {{ signup.message.error }} {/literal}</div>
                             <div class="form-text-field">
