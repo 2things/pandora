@@ -29,7 +29,9 @@
 }
 
 .main-container {
-    width: 550px;
+    max-width: 800px;
+    min-width: 320px;
+    width: auto;
     min-height: 30px;
     position: relative;
     top: 75px;
@@ -39,4 +41,79 @@
     border-radius: 3px;    
     background: none repeat scroll 0 0 #FFFFFF;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
+    overflow: auto;
+}
+
+.error404title, .error500title {
+    text-align: center;
+    color: #222;
+    font-weight: bold;
+    font-size: 22px;
+    padding: 10px;
+}
+
+.error404subtitle, .error500subtitle {
+    color: #cc0000;
+    font-weight: normal;
+    font-size: 35px;
+}
+
+.error404subtitle table, .error500subtitle table {
+    margin: 0 auto;
+}
+
+.error404subtitle .number404, .error500subtitle .number500 {
+    font-size: 100px;
+}
+
+.trythisout {
+    text-align: center;
+}
+
+.trythisout p {
+    font-weight: bold;
+    font-size: 18px;
+    color: #666;
+}
+
+.trythisout .inline-menu {
+    max-width: 365px;
+    width: auto;
+    min-width: 320px;
+    margin: 0 auto;
+    margin-bottom: 15px;
+    overflow: auto;
+}
+
+.trythisout .inline-menu a {
+    color: #0066FF;
+    text-decoration: none;
+}
+
+.trythisout .inline-menu a:hover {
+    text-decoration: underline;
+}
+
+.trythisout .search-slogan {
+    color: #555;
+    font-weight: bold;
+}
+
+.search-form-container {
+    margin: 10px auto;
+}
+
+.error404description, .error500description {
+    text-align: center;
+    font-family: 'Arial';
+    font-weight: normal;
+    font-size: 13px;
+    color: #666;
+    line-height: 1.5em;
+    padding: 5px 20px 10px 20px;
+}
+
+.error404description p:first-child, .error500description p:first-child {
+    font-weight: bold;
+    color: #555;
 }

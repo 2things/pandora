@@ -253,3 +253,34 @@ html, body {
 .inline-menu li:last-child {
     margin-right: 0px;
 }
+
+.search-form-container {
+    position: relative;
+    width: 250px;
+}
+
+.search-form-container input {
+    position: relative;
+    width: 230px;
+    padding: 5px;
+    font-weight: bold;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    outline: rgba(5, 37, 105, 0.64);
+    background: none repeat scroll 0 0 #FFFFFF;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
+    z-index: 2;
+}
+
+.search-form-container button.search-btn {
+    position: absolute;
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 0px none;
+    cursor: pointer;
+    z-index: 3;
+    right: 5px;
+    top: 3px;
+    font-size: 17px;
+}
