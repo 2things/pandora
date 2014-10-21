@@ -85,7 +85,11 @@ class Bootstrap
         }
         
         $controller = ucfirst(strtolower($requestComponents[0])) . 'Controller';
-        $action     = (isset($requestComponents[1]) && !empty($requestComponents[1])) ? strtolower($requestComponents[1]) . 'Action' : $this->defaultAction;
+        if ($controller == 'AboutController') {
+            $action = 'indexAction';
+        } else {
+            $action = (isset($requestComponents[1]) && !empty($requestComponents[1])) ? strtolower($requestComponents[1]) . 'Action' : $this->defaultAction;
+        }
         
         if (!file_exists(PATH_CONTROLLER . '/' . $controller . '.php')) {
             return array('controller' => $this->errorController, 'action' => $this->error404Action);
