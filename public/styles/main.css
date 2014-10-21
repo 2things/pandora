@@ -256,13 +256,13 @@ html, body {
 
 .search-form-container {
     position: relative;
-    width: 250px;
+    width: 285px;
 }
 
 .search-form-container input {
     position: relative;
-    width: 230px;
-    padding: 5px;
+    width: 260px;
+    padding: 8px 10px;
     font-weight: bold;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
@@ -280,7 +280,7 @@ html, body {
     border: 0px none;
     cursor: pointer;
     z-index: 3;
-    right: 5px;
-    top: 3px;
-    font-size: 17px;
+    right: 3px;
+    top: 5px;
+    font-size: 18px;
 }
