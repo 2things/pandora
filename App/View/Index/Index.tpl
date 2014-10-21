@@ -36,7 +36,7 @@
                 </div>
                 <div class="intro-auth" data-ng-app="app" data-ng-controller="UserController">
                     <div class="logo-container">
-                        <a href="index.html">
+                        <a href="/">
                             <span>2things</span>
                         </a>
                     </div>
