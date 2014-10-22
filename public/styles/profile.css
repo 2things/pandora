@@ -48,6 +48,10 @@
     text-align: center;
 }
 
+.profile-userbuttons button {
+    text-shadow: none;
+}
+
 .btn-follow {
     background-image: linear-gradient(#e3262e, #ab171e);
     background-color: #ab171e;
