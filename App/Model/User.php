@@ -18,6 +18,7 @@ class User extends \System\Model
     
     public function __construct($data = null) 
     {
+        parent::__construct();
         if ($data) {
             try {
                 $this->username = $data['username'];
@@ -27,8 +28,6 @@ class User extends \System\Model
                 throw new \Exception($e->getMessage());
             }
         }
-        
-        parent::__constructor();
     }
     
     public function setOptions($data)
@@ -92,6 +91,19 @@ class User extends \System\Model
         return $this;
     }
     
+    public function getUserByUsername($username)
+    {
+        $sql = 'SELECT * FROM user WHERE username = :username';
+        try {
+            $db = $this->getDb();
+            $sth = $db->prepare($sql);
+            $sth->execute(array('username' => $username));
+            return $sth->fetch(\PDO::FETCH_ASSOC);
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
+        }
+    }
+    
     public function isCredentialsExist($username, $password)
     {
         $sql = 'SELECT * FROM user WHERE username = :username AND password = :password';
@@ -134,5 +146,10 @@ class User extends \System\Model
     public static function isAuthorized()
     {
         return (isset($_SESSION['user']) && !empty($_SESSION['user']));
+    }
+    
+    public static function getMe()
+    {
+        return (self::isAuthorized()) ? $this->getSession('user') : false;
     }
 }
