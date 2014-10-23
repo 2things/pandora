@@ -14,6 +14,12 @@ class AboutController extends \System\HttpFrontController
             return;
         }
         
+        $userHelper  = $this->getHelper()->getUser();
+        if (!$userHelper->isUsernameValid($username)) {
+            $this->show404();
+            return;
+        }
+        
         $userModel = new \App\Model\User();
         if (!$userModel->isUsernameExist($username)) {
             $this->show404();
