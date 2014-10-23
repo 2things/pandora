@@ -46,7 +46,49 @@
                             <button type="button" class="btn btn-message">Message</button>
                         </div>
                     </div>
-                    <div class="portlet"></div>
+                    <div class="portlet">
+                        <div class="action-bar-container">
+                            <ul class="action-bar inline-menu">
+                                <li class="wishlist-count">
+                                    <div class="count-number">5</div>
+                                    <div class="action-description">Wishlists</div>
+                                </li>
+                                <li class="goals-count">
+                                    <div class="count-number">5</div>
+                                    <div class="action-description">Goals</div>
+                                </li>
+                                <li class="likes-count">
+                                    <div class="count-number">5</div>
+                                    <div class="action-description">Likes</div>
+                                </li>
+                                <li class="follwers-count">
+                                    <div class="count-number">5</div>
+                                    <div class="action-description">Followers</div>
+                                </li>
+                                <li class="follwing-count">
+                                    <div class="count-number">5</div>
+                                    <div class="action-description">Following</div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="clear"></div>
+                        <div>
+                            <h4 class="profile-desc-title">About Marcus Doe</h4>
+                            <span class="profile-desc-text"> Lorem ipsum dolor sit amet diam nonummy nibh dolore. </span>
+                            <div class="margin-top-20 profile-desc-link">
+                                <i class="fa fa-globe"></i>
+                                <a href="http://www.keenthemes.com">www.keenthemes.com</a>
+                            </div>
+                            <div class="margin-top-20 profile-desc-link">
+                                <i class="fa fa-twitter"></i>
+                                <a href="http://www.twitter.com/keenthemes/">@keenthemes</a>
+                            </div>
+                            <div class="margin-top-20 profile-desc-link">
+                                <i class="fa fa-facebook"></i>
+                                <a href="http://www.facebook.com/keenthemes/">keenthemes</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

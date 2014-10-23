@@ -1,6 +1,5 @@
 .personal-info {
-    float: left;
-    width: 300px;
+    margin: 0 auto;
     overflow: auto;
 }
 
@@ -12,13 +11,18 @@
     border-radius: 3px;
     background: none repeat scroll 0 0 #FFFFFF;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
+    max-width: 290px;
+    margin-top: 10px;
+}
+
+.portlet:first-child {
+    margin-left: 0px;
 }
 
 .profile-userpic img {
     float: none;
     margin: 0 auto;
-    width: 50%;
-    height: 50%;
+    width: 250px;
     -webkit-border-radius: 50% !important;
     -moz-border-radius: 50% !important;
     border-radius: 50% !important;
@@ -71,6 +75,65 @@
     outline: none;
 }
 
-.personal-info .portlet:nth-child(2) {
-    margin-top: 15px;
+.portlet .count-number {
+    color: #7f90a4;
+    font-size: 25px;
+    text-align: center;
+    font-family: "Open Sans", sans-serif;
+}
+
+.portlet .action-description {
+    color: #5b9bd1;
+    font-size: 11px;
+    font-weight: 800;
+    font-family: "Open Sans", sans-serif;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.portlet .action-bar li:hover div:nth-child(2) {
+    color: #820a0f;
+}
+
+.action-bar-container {
+    overflow: auto;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #f0f4f7;
+    margin-right: -15px;
+    margin-left: -15px;
+    box-sizing: border-box;
+}
+
+.profile-desc-title {
+    color: #7f90a4;
+    font-size: 17px;
+    font-weight: 600;
+    font-family: "Open Sans", sans-serif;
+}
+
+.profile-desc-text {
+    color: #7e8c9e;
+    font-size: 14px;
+    font-family: "Open Sans", sans-serif;
+}
+
+.margin-top-20 {
+    margin-top: 20px !important;
+}
+
+.profile-desc-link i {
+    width: 22px;
+    font-size: 19px;
+    color: #abb6c4;
+    margin-right: 5px;
+}
+
+.profile-desc-link a {
+    font-size: 14px;
+    font-weight: 600;
+    color: #5b9bd1;
+    font-family: "Open Sans", sans-serif;
+    text-decoration: none;
 }
