@@ -14,6 +14,18 @@ class AboutController extends \System\HttpFrontController
             return;
         }
         
+        $userModel = new \App\Model\User();
+        if (!$userModel->isUsernameExist($username)) {
+            $this->show404();
+            return;
+        }
+        
+        $he = $userModel->getUserByUsername($username);
+        var_dump($he);
+//        $profileModel = new \App\Model\Profile();
+//        
+//        $hisProfile = $profileModel->getProfile($he['id']);
+        
         $this->getView()->getSmarty()->display('About/Profile.tpl');
     }
 }
