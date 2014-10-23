@@ -17,16 +17,49 @@ class Model
     
     /**
      *
+     * @var PDO
+     */
+    private $db;
+    
+    /**
+     *
+     * @var _SESSION
+     */
+    private $session;
+    
+    /**
+     *
+     * @var _SERVER
+     */
+    private $server;
+    
+    /**
+     *
      * @var string
      */
     private $appModelNamespace = '\\App\\Model\\';
-    
+        
     /**
      * Constructor of the class
      */
-    public function __constructor()
+    public function __construct()
     {
-        $this->config = new \System\Config();
+        // Global variables
+        $this->session = $_SESSION;
+        $this->server  = $_SERVER;
+        
+        $this->init();
+    }
+    
+    /**
+     * Init basic system classes
+     * 
+     * @return void
+     */
+    final private function init()
+    {
+        $this->config      = new \System\Config();
+        $this->db          = $this->initDb();
     }
     
     /**
@@ -43,14 +76,33 @@ class Model
     }
     
     /**
-     * Gets the database Object
+     * initialize the database Object
+     * 
+     * @return \PDO
+     */
+    private function initDb()
+    {
+        $dbConfig = $this->getConfig()->get('db');
+        return new \PDO('mysql:dbname=' . $dbConfig['name'] . ';host=' . $dbConfig['host'], $dbConfig['user'], $dbConfig['pass']);
+    }
+    
+    /**
+     * Gets the database object
      * 
      * @return \PDO
      */
     public function getDb()
     {
-        $dbConfig = $this->getConfig()->get('db');
-        return new \PDO('mysql:dbname=' . $dbConfig['name'] . ';host=' . $dbConfig['host'], $dbConfig['user'], $dbConfig['pass']);
+        return $this->db;
+    }
+    
+    public function getSession($key = null)
+    {
+        if ($key) {
+            return (isset($this->session[$key])) ? $this->session[$key] : null;
+        } else {
+            $this->session;
+        }
     }
     
     /**
