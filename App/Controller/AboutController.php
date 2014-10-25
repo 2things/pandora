@@ -27,10 +27,9 @@ class AboutController extends \System\HttpFrontController
         }
         
         $he = $userModel->getUserByUsername($username);
-        var_dump($he);
-//        $profileModel = new \App\Model\Profile();
-//        
-//        $hisProfile = $profileModel->getProfile($he['id']);
+        $profileModel = new \App\Model\Profile();
+        
+        $hisProfile = $profileModel->getProfile($he['id']);
         
         $this->getView()->getSmarty()->display('About/Profile.tpl');
     }

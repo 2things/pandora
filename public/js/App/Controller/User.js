@@ -86,8 +86,7 @@ app.controller('UserController', ['$scope', '$http', function($scope, $http) {
                         $scope.signup.message.error = response.html;
                         $scope.signup.message.show = true;
                     } else if (response.status == 1) {
-                        //@todo redirect
-                        console.log('redirect');
+                        window.location.href = '/about/' + $scope.signup.username + '?';
                     }
                 }).error(function (data, status) {
                     console.log(data);
