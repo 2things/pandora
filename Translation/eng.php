@@ -15,9 +15,7 @@ return array(
     'login' => array(
         'failed' => 'Username and password combinations are wrong.'
     ),
-    'feed' => array(
-        'daily' => array(
-            'errorLoadGoals' => 'Sorry, there was an error while loading goal list. Please try again latter.'
-        ),
+    'task' => array(
+        'titleMaxLength' => 'Sorry, the length of the task exceeds the allowable length (254 characters).'
     ),
 );
