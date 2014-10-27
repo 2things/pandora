@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50611
 File Encoding         : 65001
 
-Date: 2014-10-25 16:55:02
+Date: 2014-10-27 17:56:04
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -72,23 +72,23 @@ INSERT INTO `profile` VALUES ('1', '9', null, null, null, null, null, null, null
 INSERT INTO `profile` VALUES ('2', '10', null, null, null, null, null, null, null, null, null, null, null, null, null, '2014-10-24 14:37:13', null, 'individual');
 
 -- ----------------------------
--- Table structure for `todo`
+-- Table structure for `task`
 -- ----------------------------
-DROP TABLE IF EXISTS `todo`;
-CREATE TABLE `todo` (
+DROP TABLE IF EXISTS `task`;
+CREATE TABLE `task` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `owner_id` int(11) NOT NULL,
-  `title` text CHARACTER SET utf8 NOT NULL,
-  `description` text CHARACTER SET utf8,
+  `user_id` int(11) NOT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` tinyint(2) NOT NULL DEFAULT '0',
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_date` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `status` tinyint(3) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
-  KEY `owner_id` (`owner_id`)
+  KEY `profile` (`user_id`),
+  CONSTRAINT `profile` FOREIGN KEY (`user_id`) REFERENCES `profile` (`user_id`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------
--- Records of todo
+-- Records of task
 -- ----------------------------
 
 -- ----------------------------
