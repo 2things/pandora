@@ -147,9 +147,23 @@
     margin-top: 2px;
 }
 
+.main-content .widget-action-bar {
+    overflow: auto;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 8px;
+}
+
+.main-content .widget-action-bar .main-actions {
+    overflow: auto;
+    float: left;
+    margin-left: 5px;
+}
+
 .main-content .widget-action-bar .widget-filter {
     float: right;
     position: relative;
+    margin-right: 10px;
+    margin-top: 4px;
 }
 
 .widget-filter i {
@@ -175,6 +189,7 @@
     box-shadow: none;
     transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
     line-height: 1.42857143;
+    outline: none;
 }
 
 .main-actions table {
@@ -189,6 +204,12 @@
     cursor: pointer;
     color: #444;
     font-weight: bold;
+    border-radius: 2px;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.05);
+}
+
+.main-actions button i {
+    margin-right: 5px;
 }
 
 .main-actions button:hover {
@@ -259,4 +280,82 @@
 
 .marker input[type=checkbox]:checked + label {
 	left: 43px;
+}
+
+.task-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.task-list > li {
+    position: relative;
+    padding: 10px 0;
+    border-bottom: 1px solid #F4F6F9;
+}
+
+.task-list > li > .task-checkbox {
+    float: left;
+    width: 30px;
+}
+
+div.checker {
+    margin-left: 3px;
+}
+
+div.checker span {
+    display: -moz-inline-box;
+    display: inline-block;
+    zoom: 1;
+    text-align: center;
+    background-position: 0 -260px;
+    width: 19px;
+    height: 19px;
+    
+    background-image: url("../images/sprite.png");
+    background-repeat: no-repeat;
+    -webkit-font-smoothing: antialiased;
+}
+
+div.checker input {
+    opacity: 0;
+    filter: alpha(opacity=0);
+    -moz-opacity: 0;
+    border: none;
+    background: none;
+    display: -moz-inline-box;
+    display: inline-block;
+    zoom: 1;
+    cursor: pointer;
+}
+
+div.checker input {
+    width: 19px;
+    height: 19px;
+}
+
+.task-list > li > .task-title {
+    color: #838FA1;
+    margin-right: 10px;
+}
+
+.task-list > li > .task-title .task-title-sp {
+    margin-right: 5px;
+}
+
+.task-list > li > .task-config {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.task-list > li .task-config-btn {
+    margin-top: -1px;
+}
+
+.btn-group, .btn-group-vertical {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
 }

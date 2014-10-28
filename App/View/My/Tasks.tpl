@@ -67,17 +67,17 @@
                                         </td>
                                         <td>
                                             <div class="set-done">
-                                                <button>Set as done</button>
+                                                <button><i class="fa fa-check"></i>Set as done</button>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="cancel">
-                                                <button>Cancel</button>
+                                                <button><i class="fa fa-close"></i>Cancel</button>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="cancel">
-                                                <button>Add new</button>
+                                                <button><i class="fa fa-plus"></i>Add new</button>
                                             </div>
                                         </td>
                                     </tr>
@@ -93,7 +93,42 @@
                     </div>
                     <div class="clear"></div>
                     <div class="widget-body">
-                        
+                        <ul class="task-list">
+                            <li>
+                                <div class="task-checkbox">
+                                    <input type="hidden" value="1" name="test">
+                                    <div class="checker">
+                                        <span class="">
+                                            <input type="checkbox" class="liChild" value="2" name="test">
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="task-title">
+                                    <span class="task-title-sp">Present 2013 Year IPO Statistics at Board Meeting </span>
+                                </div>
+                                <div class="task-config">
+                                    <div class="task-config-btn btn-group">
+                                        <a class="btn btn-xs default" href="#" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                        <i class="fa fa-cog"></i><i class="fa fa-angle-down"></i>
+                                        </a>
+                                        <ul class="dropdown-menu pull-right">
+                                            <li>
+                                                    <a href="#">
+                                                    <i class="fa fa-check"></i> Complete </a>
+                                            </li>
+                                            <li>
+                                                    <a href="#">
+                                                    <i class="fa fa-pencil"></i> Edit </a>
+                                            </li>
+                                            <li>
+                                                    <a href="#">
+                                                    <i class="fa fa-trash-o"></i> Cancel </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                        </li>
+                        </ul>
                     </div>
                 </div>
             </div>
