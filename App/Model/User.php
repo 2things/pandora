@@ -150,6 +150,9 @@ class User extends \System\Model
     
     public static function getMe()
     {
-        return (self::isAuthorized()) ? $this->getSession('user') : false;
+        /**
+         * @todo to not use $_SESSION global variable
+         */
+        return (self::isAuthorized()) ? $_SESSION['user'] : false;
     }
 }

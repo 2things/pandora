@@ -44,10 +44,14 @@ app.controller('UserController', ['$scope', '$http', function($scope, $http) {
                         'password': password,
                     }
                 }).success(function (response) {
-                    console.log(response);
+                    if (response.status == -1) {
+                        $scope.login.message.error = response.html;
+                        $scope.login.message.show = true;
+                    } else if (response.status == 1) {
+                        window.location.href = '/my/tasks';
+                    }
                 }).error(function (data, status) {
-                    console.log(data);
-                    console.log(status);
+                    window.location.href = '/error/error500';
                 });
 
                 return false;

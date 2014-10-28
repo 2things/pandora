@@ -13,7 +13,7 @@ return array(
         'passwordEmptyError' => 'Password cannot be empty.',
     ),
     'login' => array(
-        'failed' => 'Username and password combinations are wrong.'
+        'failed' => 'Username and password combination is wrong.'
     ),
     'task' => array(
         'titleMaxLength' => 'Sorry, the length of the task exceeds the allowable length (254 characters).'
