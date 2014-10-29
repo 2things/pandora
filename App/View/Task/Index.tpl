@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="/styles/main.css">
         <link rel="stylesheet" href="/styles/feed.css">
         <script type="text/javascript" src="/js/lib/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/main.js"></script>
         <script type="text/javascript" src="/js/left-menu-effect.js"></script>
     </head>
     <body>
@@ -98,9 +99,8 @@
                                 <div class="task-checkbox">
                                     <input type="hidden" value="1" name="test">
                                     <div class="checker">
-                                        <span class="">
-                                            <input type="checkbox" class="liChild" value="2" name="test">
-                                        </span>
+                                        <input type="checkbox" value="None" id="1" name="check" />
+                                        <label for="1"></label>
                                     </div>
                                 </div>
                                 <div class="task-title">
@@ -127,7 +127,46 @@
                                         </ul>
                                     </div>
                                 </div>
-                        </li>
+                                <div class="clear"></div>
+                                <p class="task-additional-info"><span>Created at 10 Nov 2014, 23:14.</span>&nbsp;<span>By&nbsp;<a href="#">Gevorg Makaryan</a></span></p>
+                                <div class="clear"></div>
+                            </li>
+                            <li>
+                                <div class="task-checkbox">
+                                    <input type="hidden" value="1" name="test">
+                                    <div class="checker">
+                                        <input type="checkbox" value="None" id="2" name="check" />
+                                        <label for="2"></label>
+                                    </div>
+                                </div>
+                                <div class="task-title">
+                                    <span class="task-title-sp">Present 2013 Year IPO Statistics at Board Meeting </span>
+                                </div>
+                                <div class="task-config">
+                                    <div class="task-config-btn btn-group">
+                                        <a class="btn btn-xs default" href="#" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                        <i class="fa fa-cog"></i><i class="fa fa-angle-down"></i>
+                                        </a>
+                                        <ul class="dropdown-menu pull-right">
+                                            <li>
+                                                    <a href="#">
+                                                    <i class="fa fa-check"></i> Complete </a>
+                                            </li>
+                                            <li>
+                                                    <a href="#">
+                                                    <i class="fa fa-pencil"></i> Edit </a>
+                                            </li>
+                                            <li>
+                                                    <a href="#">
+                                                    <i class="fa fa-trash-o"></i> Cancel </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                                <p class="task-additional-info"><span>Created at 10 Nov 2014, 23:14.</span>&nbsp;<span>By&nbsp;<a href="#">Gevorg Makaryan</a></span></p>
+                                <div class="clear"></div>
+                            </li>
                         </ul>
                     </div>
                 </div>
