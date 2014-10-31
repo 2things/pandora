@@ -21,7 +21,7 @@ class TaskController extends \System\HttpFrontController
         $taskModel = new \App\Model\Task();
         
         try {
-            $myTasks   = $taskModel->getTasks($me['id'], $dbOffset);
+            $myTasks = $taskModel->getTasks($me['id'], $dbOffset);
         } catch (\System\Exception\ModelException $e) {
             if ($isAjax) {
                 throw new \System\Exception\ControllerException($translation['common']);
@@ -31,6 +31,9 @@ class TaskController extends \System\HttpFrontController
             return;
         }
         
+        if (empty($myTasks)) {
+            return $noTaskHtml = $this->getView()->getSmarty()->display('Task/NoTask.tpl');
+        }
         
         $this->getView()->setVariable('tasks', $myTasks);
         
@@ -56,5 +59,29 @@ class TaskController extends \System\HttpFrontController
         } catch (\System\Exception\ControllerException $e) {
             $this->getView()->renderJson(array('status' => -1, 'html' => $e->getMessage()));
         }
+    }
+    
+    public function ajaxaddtaskAction()
+    {
+        $taskTitle   = (isset($this->getInputStream()->tasktitle)) ? $this->getInputStream()->tasktitle : $this->getPost('tasktitle');
+        $me          = \App\Model\User::getMe();
+        $translation = $this->getTranslation()->get('eng');
+        
+        if (empty($taskTitle)) {
+            $this->getView()->renderJson(array('status' => -1, 'html' => $translation['task']['titleEmptyError']));
+        }
+        
+        if (mb_strlen($taskTitle) >= 255) {
+            $this->getView()->renderJson(array('status' => -1, 'html' => $translation['task']['titleMaxLength']));
+        }
+        
+        $taskModel = new \App\Model\Task();
+        try {
+            $taskModel->addTask($me['id'], $taskTitle);
+        } catch (System\Exception\ModelException $e) {
+            $this->getView()->renderJson(array('status' => -1, 'html' => $translation['common']));
+        }
+        
+        $this->getView()->renderJson(array('status' => 1, 'html' => ''));
     }
 }
