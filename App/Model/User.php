@@ -69,10 +69,11 @@ class User extends \System\Model
     }
     
     public function login()
-    {       
+    {
+        $me = $this->getUserByUsername($this->username);
         session_destroy();
         session_start();
-        $_SESSION['user'] = self::$me = array('username' => $this->username, 'email' => $this->email, 'id' => $this->id);
+        $_SESSION['user'] = self::$me = array('username' => $me['username'], 'email' => $me['email'], 'id' => $me['id']);
     }
     
     public function insert()
