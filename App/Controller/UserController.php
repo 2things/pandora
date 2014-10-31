@@ -78,9 +78,8 @@ class UserController extends \System\HttpFrontController
         if (\App\Model\User::isAuthorized()) {
             $this->getView()->renderJson(array('status' => 0, 'html' => ''));
         }
-        
-        $username   = $this->getPost('username');
-        $password   = $this->getPost('password');
+        $username   = (isset($this->getInputStream()->username)) ? $this->getInputStream()->username : $this->getPost('username');
+        $password   = (isset($this->getInputStream()->password)) ? $this->getInputStream()->password : $this->getPost('password');
         
         $userModel   = new \App\Model\User();
         $userHelper  = $this->getHelper()->getUser();
