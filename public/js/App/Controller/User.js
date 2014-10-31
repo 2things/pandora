@@ -48,7 +48,7 @@ app.controller('UserController', ['$scope', '$http', function($scope, $http) {
                         $scope.login.message.error = response.html;
                         $scope.login.message.show = true;
                     } else if (response.status == 1) {
-                        window.location.href = '/my/tasks';
+                        window.location.href = '/task';
                     }
                 }).error(function (data, status) {
                     window.location.href = '/error/error500';
