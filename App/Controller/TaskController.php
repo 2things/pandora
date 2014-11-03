@@ -84,4 +84,33 @@ class TaskController extends \System\HttpFrontController
         
         $this->getView()->renderJson(array('status' => 1, 'html' => ''));
     }
+    
+    public function ajaxedittaskAction()
+    {
+        $taskId      = (isset($this->getInputStream()->taskid)) ? $this->getInputStream()->taskid : $this->getPost('taskid');
+        $taskTitle   = (isset($this->getInputStream()->tasktitle)) ? $this->getInputStream()->tasktitle : $this->getPost('tasktitle');
+        $me          = \App\Model\User::getMe();
+        $translation = $this->getTranslation()->get('eng');
+        
+        if (!is_numeric($taskId)) {
+            $this->getView()->renderJson(array('status' => -1, 'html' => $translation['common']));
+        }
+        
+        if (empty($taskTitle)) {
+            $this->getView()->renderJson(array('status' => -1, 'html' => $translation['task']['titleEmptyError']));
+        }
+        
+        if (mb_strlen($taskTitle) >= 255) {
+            $this->getView()->renderJson(array('status' => -1, 'html' => $translation['task']['titleMaxLength']));
+        }
+        
+        $taskModel = new \App\Model\Task();
+        try {
+            $taskModel->editTask($me['id'], $taskId, $taskTitle);
+        } catch (System\Exception\ModelException $e) {
+            $this->getView()->renderJson(array('status' => -1, 'html' => $translation['common']));
+        }
+        
+        $this->getView()->renderJson(array('status' => 1, 'html' => ''));
+    }
 }

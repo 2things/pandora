@@ -24,10 +24,14 @@ app.controller('TaskController', ['$scope', '$http', function($scope, $http) {
             
             'http': {
                 'method': 'POST',
-                'url': '/task/ajaxaddtask',
+                'addTaskAjaxUrl': '/task/ajaxaddtask',
+                'editTaskAjaxUrl': '/task/ajaxedittask',
             },
             
             'pressToAdd': function (event) {
+                $scope.message.show  = false;
+                $scope.message.error = '';
+                
                 if (event.charCode != 13) {
                     return;
                 }
@@ -52,10 +56,29 @@ app.controller('TaskController', ['$scope', '$http', function($scope, $http) {
                 });
             },
             
+            'edit': function (taskTitle) {
+                $http({
+                    method: $scope.addTask.http.method,
+                    url: $scope.addTask.http.editTaskAjaxUrl,
+                    data: {
+                        'tasktitle': taskTitle
+                    }
+                }).success(function (response) {
+                    if (response.status == -1) {
+                        $scope.message.error = response.html;
+                        $scope.message.show = true;
+                    } else if (response.status == 1) {
+                        callback();
+                    }
+                }).error(function (data, status) {
+                    window.location.href = '/error/error500';
+                });
+            },
+            
             'add': function (taskTitle, callback) {
                 $http({
                     method: $scope.addTask.http.method,
-                    url: $scope.addTask.http.url,
+                    url: $scope.addTask.http.addTaskAjaxUrl,
                     data: {
                         'tasktitle': taskTitle
                     }

@@ -20,12 +20,16 @@ class Task extends \System\Model
         
         $sql = 'SELECT * FROM ' . self::$table . ' '
                 . 'WHERE user_id = :userId' . ' '
-                . 'LIMIT :beginingFrom , ' . self::$selectLimit . ' '
-                . 'ORDER BY created_date DESC';
+                . 'ORDER BY created_date DESC '
+                . 'LIMIT :offset, :limit';
         try {
             $db = $this->getDb();
             $sth = $db->prepare($sql);
-            $sth->execute(array('userId' => $userId, 'beginingFrom' => $begingingFrom));
+            $sth->bindParam(':userId', $userId);
+            $sth->bindParam(':offset', $begingingFrom, \PDO::PARAM_INT);
+            $sth->bindParam(':limit', self::$selectLimit, \PDO::PARAM_INT);
+            $sth->execute();
+            
             return $sth->fetchAll(\PDO::FETCH_ASSOC);
         } catch (\System\Exception\DbException $e) {
             throw new \System\Exception\ModelException($e->getMessage());

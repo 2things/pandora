@@ -59,7 +59,6 @@
                     </div>
                     <div class="clear"></div>
                     <div class="widget-action-bar">
-                        {if !isset($noTaskHtml)}
                         <div class="main-actions">
                             <form>
                                 <table>
