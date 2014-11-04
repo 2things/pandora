@@ -6,6 +6,11 @@ class Task extends \System\Model
 {
     protected static $table = 'task';
     
+    protected static $taskStatuses = array(
+        'inprogress' => 0,
+        'complete'   => 1,
+    );
+    
     protected static $selectLimit = 20;
     
     public function getTasks($userId, $begingingFrom)
@@ -52,7 +57,99 @@ class Task extends \System\Model
             $db = $this->getDb();
             $sth = $db->prepare($sql);
             $sth->execute(array('userId' => $userId, 'title' => $taskTitle));
-            return $db->lastInsertId();
+            $lastInsertedTask = $db->lastInsertId();
+            $sql = 'SELECT * FROM ' . self::$table . ' WHERE id = ' . $lastInsertedTask;
+            $sth = $db->prepare($sql);
+            $sth->execute();
+            return $sth->fetch(\PDO::FETCH_ASSOC);
+        } catch (\System\Exception\DbException $e) {
+            throw new \System\Exception\ModelException($e->getMessage());
+        }
+    }
+    
+    public function setAsDone($userId, $tasks)
+    {
+        if (!is_numeric($userId)) {
+            throw new \System\Exception\ModelException('wrong value was provided for userId.');
+        }
+        
+        $updatedDate = date('Y-m-d h:i:s');
+        $in = array();
+        
+        foreach ($tasks as $task) {
+            if (is_array($task)) {
+                if (!is_numeric($task['id'])) {
+                    throw new \System\Exception\ModelException('wrong value was provided for task.');
+                }
+
+                $in[] = $task['id'];
+            } else {
+                if (!is_numeric($task->id)) {
+                    throw new \System\Exception\ModelException('wrong value was provided for task.');
+                }
+
+                $in[] = $task->id;
+            }
+        }
+        
+        if (empty($in)) {
+            throw new \System\Exception\ModelException('No task to complete.');
+        }
+        
+        $in = implode(' ,', $in);
+        
+        $sql = 'UPDATE ' . self::$table . ' '
+                . 'SET '
+                . 'status = ' . self::$taskStatuses['complete'] . ', '
+                . 'updated_date = "' . $updatedDate . '" '
+                . 'WHERE '
+                . 'user_id = :userId AND id IN (' . $in . ')';
+        try {
+            $db = $this->getDb();
+            $sth = $db->prepare($sql);
+            return $sth->execute(array('userId' => $userId));
+        } catch (\System\Exception\DbException $e) {
+            throw new \System\Exception\ModelException($e->getMessage());
+        }
+    }
+    
+    public function deleteTasks($userId, $tasks)
+    {
+        if (!is_numeric($userId)) {
+            throw new \System\Exception\ModelException('wrong value was provided for userId.');
+        }
+        
+        $in = array();
+        
+        foreach ($tasks as $task) {
+            if (is_array($task)) {
+                if (!is_numeric($task['id'])) {
+                    throw new \System\Exception\ModelException('wrong value was provided for task.');
+                }
+
+                $in[] = $task['id'];
+            } else {
+                if (!is_numeric($task->id)) {
+                    throw new \System\Exception\ModelException('wrong value was provided for task.');
+                }
+
+                $in[] = $task->id;
+            }
+        }
+        
+        if (empty($in)) {
+            throw new \System\Exception\ModelException('No task to complete.');
+        }
+        
+        $in = implode(' ,', $in);
+        
+        $sql = 'DELETE FROM ' . self::$table
+                . ' WHERE'
+                . ' user_id = :userId AND id IN (' . $in . ')';
+        try {
+            $db = $this->getDb();
+            $sth = $db->prepare($sql);
+            return $sth->execute(array('userId' => $userId));
         } catch (\System\Exception\DbException $e) {
             throw new \System\Exception\ModelException($e->getMessage());
         }

@@ -69,7 +69,7 @@
                             </div>
                             <div class="task-list">
                                 <ul>
-                                    <li data-ng-repeat="task in taskList track by $index">
+                                    <li data-ng-repeat="task in taskList | orderBy:'-created_date'">
                                         {literal}{{ task }}{/literal}
                                     </li>
                                 </ul>

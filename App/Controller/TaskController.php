@@ -35,12 +35,12 @@ class TaskController extends \System\HttpFrontController
             return $noTaskHtml = $this->getView()->getSmarty()->display('Task/NoTask.tpl');
         }
         
-        $this->getView()->setVariable('tasks', $myTasks);
-        
         if ($isAjax) {
-            return $this->getView()->getSmarty()->fetch('Task/AjaxTasks.tpl');
+            $this->getView()->renderJson(array('status' => 1, 'html' => '', 'data' => $myTasks));
+            return;
         }
         
+        $this->getView()->setVariable('tasks', $myTasks);
         $this->getView()->getSmarty()->display('Task/Index.tpl');
     }
     
@@ -53,8 +53,7 @@ class TaskController extends \System\HttpFrontController
             $this->getView()->renderJson(array('status' => -1, 'html' => $translation['common']));
         }
         try {
-            $html = $this->tasksAction($dbOffset, true);
-            $this->getView()->renderJson(array('status' => 1, 'html' => $html));
+            $this->indexAction($dbOffset, true);
             return;
         } catch (\System\Exception\ControllerException $e) {
             $this->getView()->renderJson(array('status' => -1, 'html' => $e->getMessage()));
@@ -77,7 +76,8 @@ class TaskController extends \System\HttpFrontController
         
         $taskModel = new \App\Model\Task();
         try {
-            $taskModel->addTask($me['id'], $taskTitle);
+            $result = $taskModel->addTask($me['id'], $taskTitle);
+            $this->getView()->renderJson(array('status' => 1, 'html' => '', 'data' => $result));
         } catch (System\Exception\ModelException $e) {
             $this->getView()->renderJson(array('status' => -1, 'html' => $translation['common']));
         }
@@ -85,6 +85,41 @@ class TaskController extends \System\HttpFrontController
         $this->getView()->renderJson(array('status' => 1, 'html' => ''));
     }
     
+    public function ajaxsetasdoneAction()
+    {
+        $tasks       = (isset($this->getInputStream()->tasks)) ? $this->getInputStream()->tasks : $this->getPost('tasks');
+        $me          = \App\Model\User::getMe();
+        $translation = $this->getTranslation()->get('eng');
+        
+        $taskModel = new \App\Model\Task();
+        
+        try {
+            $taskModel->setAsDone($me['id'], $tasks);
+        } catch (System\Exception\ModelException $e) {
+            $this->getView()->renderJson(array('status' => -1, 'html' => $translation['common']));
+        }
+        
+        $this->getView()->renderJson(array('status' => 1, 'html' => ''));
+    }
+    
+    public function ajaxdeletetasksAction()
+    {
+        $tasks       = (isset($this->getInputStream()->tasks)) ? $this->getInputStream()->tasks : $this->getPost('tasks');
+        $me          = \App\Model\User::getMe();
+        $translation = $this->getTranslation()->get('eng');
+        
+        $taskModel = new \App\Model\Task();
+        
+        try {
+            $taskModel->deleteTasks($me['id'], $tasks);
+        } catch (System\Exception\ModelException $e) {
+            $this->getView()->renderJson(array('status' => -1, 'html' => $translation['common']));
+        }
+        
+        $this->getView()->renderJson(array('status' => 1, 'html' => ''));
+    }
+
+
     public function ajaxedittaskAction()
     {
         $taskId      = (isset($this->getInputStream()->taskid)) ? $this->getInputStream()->taskid : $this->getPost('taskid');

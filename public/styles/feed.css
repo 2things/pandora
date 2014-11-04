@@ -376,6 +376,10 @@ div.checker input[type=checkbox]:checked + label:after {
     margin-right: 5px;
 }
 
+.task-list > li > .task-title .task-title-sp.task-status-1 {
+    text-decoration: line-through;
+}
+
 .task-list > li > .task-config {
     /*display: none;*/
     position: absolute;
@@ -559,4 +563,9 @@ div.checker input[type=checkbox]:checked + label:after {
 
 .task-additional-info a {
     color: #5b9bd1;
+}
+
+.add-new .add-task-title {
+    padding: 4px;
+    outline: none;
 }
