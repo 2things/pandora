@@ -56,6 +56,9 @@ app.controller('TaskController', ['$scope', '$http', function($scope, $http) {
             },
             
             'clickToSetAsDone': function () {
+                if ($scope.selectedTasks.length < 1) {
+                    return;
+                }
                 $http({
                     method: $scope.setAsDone.http.method,
                     url: $scope.setAsDone.http.url,
