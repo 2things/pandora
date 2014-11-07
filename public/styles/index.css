@@ -5,11 +5,9 @@
 .intro-auth {
     width: 710px;
     padding: 10px;
-    position: absolute;
-    top: 50%;
     left: 50%;
     margin-left: -355px;
-    background: #e9eaee;
+    background: #fff;
     border: 2px solid #ffffff;
     text-align: center;
     box-shadow: 1px 2px 6px rgba(0,0,0, 0.5);
@@ -19,6 +17,10 @@
     -moz-border-radius: 5px;
     border-radius: 5px;
     z-index: 3;
+    position: relative;
+    margin-bottom: 25px;
+    margin-top: -400px;
+    padding-bottom: 35px;
 }
 
 .login {
@@ -39,7 +41,7 @@
 .holder-or .word-or {
     width: 40px;
     height: 20px;
-    background: #e9eaee;
+    background: #fff;
     position: absolute;
     top: 0px;
     left: 50%;
@@ -59,8 +61,8 @@
 }
 
 .title {
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 .title .main-title {
@@ -70,9 +72,8 @@
     display: block;
 }
 
-.title .sub-title {
-    font-weight: normal;
-    font-size: 16px;
+.sub-title {
+    font-weight: bold;
     color: #666;
     display: block;
     margin-top: 10px;
@@ -116,4 +117,67 @@
 .main-container {
     top: 0px;
     position:initial;
+}
+
+#banner {
+    background-attachment: fixed;
+    background-color: #666;
+    background-image: url(../images/3.jpg);
+    background-position: top left;
+    background-repeat: repeat;
+    color: #fff;
+    padding: 15em 0 25em 0;
+    text-align: center;
+}
+
+.inside-app .profiles .title {
+    text-align: left;
+    font-weight: bold;
+}
+
+.use-for {
+    margin: 0;
+    padding: 0;
+    width: 734px;
+    margin-left: -12px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding-top: 0px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+.use-for table {
+    width: 100%;
+}
+
+.use-for table td {
+    width: 33.33%;
+}
+
+.use-for table div {
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    font: 20px;
+    width: 25px;
+    margin: 0 auto;
+    padding: 20px;
+    color: #444;
+}
+
+.use-for table div:hover {
+    border-color: #888;
+}
+
+.use-for p {
+    color: #444;
+    font-family: arial;
+}
+
+.use-for p.tb {
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 18px;
+    font-family: 'Lora', serif;
+    color: #444;
 }

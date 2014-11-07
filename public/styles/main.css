@@ -55,7 +55,7 @@ html, body {
 
 .main-navigation ul li a {
     text-decoration: none;
-    color: #fff;
+    color: #0066FF;
     font-weight: bold;
     font-size: 15px;
 }
@@ -65,21 +65,24 @@ html, body {
 }
 
 .btn {
-    background-clip: padding-box;
-    border-radius: 4px;
     border: 1px solid rgba(0, 0, 0, 0.3);
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
     font-size: 13px;
-    padding: 7px 9px 7px 7px;
+    padding: 7px 10px 7px 10px;
     background-color: #f7f7f7;
-    background: linear-gradient(#fff, #f0f0f0);
     border: 1px solid #ccc;
     color: #5f5f5f;
     cursor: pointer;
     font-weight: bold;
-    text-shadow: 0 1px #fff;
     white-space: nowrap;
     text-decoration: none;
+}
+
+.btn-blue {
+    background-color: #0078e7;
+    background: linear-gradient(#0066FF, #0047B2);
+    border: 1px solid rgba(5, 37, 105, 0.64);
+    color: #fff;
 }
 
 .btn-text {
@@ -98,9 +101,7 @@ html, body {
     border-left-color: #9a1015;
     border-right-color: #9a1015;
     border-top-color: #af151b;
-    box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.34);
     color: #fff;
-    text-shadow: 0 -1px rgba(0, 0, 0, 0.11);
 }
 
 .btn.red .btn-text, .btn.blue .btn-text {
@@ -290,7 +291,6 @@ html, body {
 }
 
 .main-container {
-    width: 98%;
     min-width: 320px;
     min-height: 30px;
     position: relative;
@@ -303,4 +303,54 @@ html, body {
     width: 100% \9;
     max-width: 100%;
     height: auto;
+}
+
+.login-actions {
+    margin-right: 40px;
+    position: absolute;
+    right: 0px;
+    top: 38%;
+}
+
+.login-actions a {
+    font-weight: bold;
+    font-size: 18px;
+    color: #ab171e;
+    text-decoration: none;
+}
+
+.entity-small {
+    width: 162px;
+    text-align: left;
+    overflow: auto;
+    height: auto;
+    float: left;
+    margin-right: 10px;
+}
+
+.entity-small:last-child {
+    margin-right: 0px;
+}
+
+.entity-small .username {
+    color: #0066FF;
+    font: 16px bold volkswagen-serial-mediumRg, Arial, Helvetica, sans-serif;
+}
+
+.btn-red {
+    background-image: linear-gradient(#e3262e, #ab171e);
+    background-color: #ab171e;
+    border-bottom-color: #820a0f;
+    border-left-color: #9a1015;
+    border-right-color: #9a1015;
+    border-top-color: #af151b;
+    padding: 5px 15px;
+    font-weight: bold;
+    font-size: 15px;
+    color: #fff;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    outline: none;
+    border: 1px solid;
 }

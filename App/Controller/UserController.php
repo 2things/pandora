@@ -9,6 +9,15 @@ use System;
  */
 class UserController extends \System\HttpFrontController
 {
+    public function indexAction()
+    {
+        if (\App\Model\User::isAuthorized()) {
+            $this->redirect('/home');
+        }
+        
+        $this->getView()->getSmarty()->display('User/Index.tpl');
+    }
+    
     /**
      * Performs action signup
      * 

@@ -16,26 +16,28 @@
         <script type="text/javascript" src="/js/App/Controller/User.js"></script>
     </head>
     <body>
-        <img src="/images/bg/bg1.jpg" id="bg" alt="">
+        <style>
+            .intro-auth {
+                margin-bottom: 0px;
+                border-bottom-left-radius: 0px;
+                border-bottom-right-radius: 0px;
+            }
+            
+            .intro-auth .main-navigation {
+                width: 390px;
+                margin: 0 auto;
+                font-family: arial;
+                overflow: auto;
+            }
+            
+            .intro-auth .main-navigation ul li a {
+                font-weight: normal;
+            }
+        </style>
         <div class="body">
             <div class="main-container">
-                <div class="main-navigation">
-                    <ul class="inline-menu">
-                        <li>
-                            <a href="/static/about"><span>About 2things</span></a>
-                        </li>
-                        <li>
-                            <a href="/static/privacy"><span>Privacy</span></a>
-                        </li>
-                        <li>
-                            <a href="/static/featurelist"><span>Feature list</span></a>
-                        </li>
-                        <li>
-                            <a href="/static/faq"><span>FAQ</span></a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="intro-auth" data-ng-app="app" data-ng-controller="UserController">
+                <div id="banner"></div>
+                <div class="intro-auth">
                     <div class="logo-container">
                         <a href="/">
                             <span>2things</span>
@@ -43,98 +45,78 @@
                     </div>
                     <div class='title'>
                         <span class="main-title">Your friend in online world and your truly assistant in real world.</span>
-                        <span class="sub-title">Don't worry you can reach your goals and socialize with friends simultaneously.</span>
+                        <span class="sub-title">Use 2things to make your dreams come true.</span>
                     </div>
-                    <a href="#signup-anchor" id='signup-anchor'></a>
-                    <div class="title-hint"><span>There are just&nbsp;</span><div class="title-logo"></div><span>&nbsp;things...</span></div>
-                    <div class="login">
-                        <form name="loginForm" id="login-form" class="form" action="/user/login" method="post" data-ng-submit="login.doLogin($event)">
-                            <div class="error login-common-error" data-ng-show="login.message.show">{literal} {{ login.message.error }} {/literal}</div>
-                            <div class="form-text-field">
-                                <input placeholder="Username" type="text" name="username" id="login-username" data-ng-model="login.username">
-                            </div>
-                            <div class="form-text-field">
-                                <input placeholder="Password" type="password" name="password" id="login-password" data-ng-model="login.password">
-                            </div>
-                            <div class="clear"></div>
-                            <div class="form-btn-container">
-                                <input class="btn-blue" type="submit" name="login" id="login-submit" value="Log in">
-                            </div>
-                        </form>
+                    <div class="clear"></div>
+                    <form action='/user' method='get'>
+                        <div class="form-btn-container">
+                            <input class="btn-blue" type="submit" name="login" id="login-submit" value="Log in">
+                        </div>
+                        <div class="clear"></div>
+                        <div class="holder-or">
+                            <hr />
+                            <div class="word-or">or</div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="form-btn-container">
+                            <input class="btn-red" type="submit" name="signup" id="signup-submit" value="Sign up. It's free!">
+                        </div>
+                    </form>
+                    <div class="clear"></div>
+                    <div class="use-for">
+                        <p class="tb">Use 2things to</p>
+                        <table>
+                            <tr>
+                                <td>
+                                    <div><i class="fa fa-bookmark-o"></i></div>
+                                    <p>Realize your goals</p>
+                                </td>
+                                <td>
+                                    <div><i class="fa fa-list"></i></div>
+                                    <p>Get to-dos done</p>
+                                </td>
+                                <td>
+                                    <div><i class="fa fa-calendar-o"></i></div>
+                                    <p>Create events</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div><i class="fa fa-user"></i></div>
+                                    <p>Find friends</p>
+                                </td>
+                                <td>
+                                    <div><i class="fa fa-bullhorn"></i></div>
+                                    <p>Follow goals</p>
+                                </td>
+                                <td>
+                                    <div><i class="fa fa-file-text-o"></i></div>
+                                    <p>Make whishlists</p>
+                                </td>
+                            </tr>
+                        </table>
+                        <p class="tb">And mach more things you realy like.</p>
                     </div>
-                    <div class="holder-or">
-                        <hr />
-                        <div class="word-or">or</div>
+                    <div>
+                        <div class="main-navigation">
+                            <ul class="inline-menu">
+                                <li>
+                                    <a href="/static/about"><span>About 2things</span></a>
+                                </li>
+                                <li>
+                                    <a href="/static/privacy"><span>Privacy</span></a>
+                                </li>
+                                <li>
+                                    <a href="/static/featurelist"><span>Feature list</span></a>
+                                </li>
+                                <li>
+                                    <a href="/static/faq"><span>FAQ</span></a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="signup">
-                        <form name="signupForm" id="signup-form" action="/user/signup" method="post" data-ng-submit="signup.doSignup($event)">
-                            <div class="error" data-ng-show="signup.message.show">{literal} {{ signup.message.error }} {/literal}</div>
-                            <div class="form-text-field">
-                                <input placeholder="E-mail" type="text" name="email" id="signup-email" data-ng-model="signup.email">
-                            </div>
-                            <div class="form-text-field">
-                                <input placeholder="Username" type="text" name="username" id="signup-username" data-ng-model="signup.username">
-                            </div>
-                            <div class="form-text-field">
-                                <input placeholder="Password" type="password" name="password" id="signup-password" data-ng-model="signup.password">
-                            </div>
-                            <div class="form-text-field">
-                                <input placeholder="Confirm password" type="password" name="passwordRepeat" id="signup-password-repeat" data-ng-model="signup.passwordRepeat">
-                            </div>
-                            <div class="form-btn-container">
-                                <input class="btn-red" type="submit" name="signup" id="signup-submit" value="Sign up. It's free!">
-                            </div>
-                        </form>
-                    </div>
-                    <div class="title-hint you-are-done"><span>... and you are done!</span></div>
                 </div>
             </div>
-            <div class="cover-dark"></div>
         </div>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $('.cover-dark').css('height', $(document).height());
-                $('.intro-auth').css('marginTop', '-' + ($('.intro-auth').height() / 2) + 'px');
-                var bgImages = ['bg2.jpg', 'bg3.jpg', 'bg4.jpg', 'bg1.jpg'];
-                var bgImagesIndex = 0;
-                var interval = setInterval(function() {
-                    $('.cover-dark').animate({literal}{'opacity' : 0.1}{/literal}, 800, 'swing', function () {
-                        $('#bg').attr('src', '/images/bg/' + bgImages[bgImagesIndex]);
-                        $('.cover-dark').animate({literal}{'opacity' : 0.7}{/literal}, 500);
-                    })
-                    if (bgImagesIndex == 3) {
-                        bgImagesIndex = 0;
-                    } else {
-                        bgImagesIndex++;
-                    }
-                }, 15000);    
-            }); 
-            
-            
-            // Background
-            $(window).load(function() {    
-
-                    var theWindow        = $(window),
-                        $bg              = $("#bg"),
-                        aspectRatio      = $bg.width() / $bg.height();
-
-                    function resizeBg() {
-
-                            if ( (theWindow.width() / theWindow.height()) < aspectRatio ) {
-                                $bg
-                                    .removeClass()
-                                    .addClass('bgheight');
-                            } else {
-                                $bg
-                                    .removeClass()
-                                    .addClass('bgwidth');
-                            }
-
-                    }
-
-                    theWindow.resize(resizeBg).trigger("resize");
-
-            });
-        </script>
     </body>
 </html>

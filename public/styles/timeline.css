@@ -1,0 +1,21 @@
+.cd-timeline-content {
+    box-shadow: none;
+}
+
+.cd-timeline-img {
+    background: none !important;
+    border: 1px solid #ccc !important;
+    box-shadow: none;
+}
+
+.cd-timeline-img i {
+    width: 30px;
+    height: 30px;
+    font-size: 30px;
+    color: #444;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -15px;
+    margin-left: -15px;
+}
