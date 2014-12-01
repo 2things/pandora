@@ -16,6 +16,25 @@ class View
     protected $smarty;
     
     /**
+     *
+     * @var string
+     */
+    protected $layout;
+    
+    /**
+     *
+     * @var string
+     */
+    protected $pageContent;
+    
+    /**
+     *
+     * @var boolean
+     */
+    protected $isLeftmenuHidden = false;
+
+
+    /**
      * Contructor of the class
      */
     public function __construct()
@@ -48,26 +67,46 @@ class View
     public function setVariable($var, $value)
     {
         $this->smarty->assign($var, $value);
+        return $this->smarty;
     }
     
     /**
-     * Gets the html head template content
+     * Sets the layout
      * 
-     * @return string HTML content of the string
+     * @param string $layout
      */
-    public function getHtmlHead()
+    public function setLayout($layout)
     {
-        return $this->smarty->fetch('Head.tpl');
+        $this->layout = $layout;
+        return $this;
     }
     
     /**
-     * Gets the html footer template content
+     * Sets the page content
      * 
-     * @return string HTML content of the string
+     * @param string $pageContent
      */
-    public function getHtmlFooter()
+    public function setPageContent($pageContent)
     {
-        return $this->smarty->fetch('Footer.tpl');
+        $this->pageContent = $pageContent;
+        return $this;
+    }
+    
+    /**
+     * Hides the left menu block
+     */
+    public function hideLeftmenu()
+    {
+        $this->isLeftmenuHidden = true;
+        return $this;
+    }
+    
+    public function display()
+    {
+        $this->smarty->assign('isHiddenleftMenu', $this->isLeftmenuHidden);
+        $this->smarty->assign('pageContent', $this->pageContent);
+        $this->smarty->display('Layouts/' . $this->layout . '.tpl');
+        exit;
     }
     
     /**

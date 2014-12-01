@@ -20,6 +20,9 @@ class TaskController extends \System\HttpFrontController
         
         $taskModel = new \App\Model\Task();
         
+        $view = $this->getView();
+        $view->setLayout('ALayout');
+        
         try {
             $myTasks = $taskModel->getTasks($me['id'], $dbOffset);
         } catch (\System\Exception\ModelException $e) {
@@ -32,7 +35,7 @@ class TaskController extends \System\HttpFrontController
         }
         
         if (empty($myTasks)) {
-            return $noTaskHtml = $this->getView()->getSmarty()->display('Task/NoTask.tpl');
+            return $noTaskHtml = $view->setPageContent($view->getSmarty()->fetch('Task/NoTask.tpl'))->display();
         }
         
         if ($isAjax) {
@@ -40,8 +43,10 @@ class TaskController extends \System\HttpFrontController
             return;
         }
         
-        $this->getView()->setVariable('tasks', $myTasks);
-        $this->getView()->getSmarty()->display('Task/Index.tpl');
+        $view->setVariable('tasks', $myTasks);
+        $pageContent = $view->getSmarty()->render('Task/Index.tpl');
+        $view->setPageContent($pageContent);
+        $view->display();
     }
     
     public function ajaxloadmoretasksAction()

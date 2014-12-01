@@ -39,16 +39,19 @@
                             <a href="#"><i class="fa fa-list"></i></a>
                         </li>
                         <li class="active">
-                            <a href="#"><i class="fa fa-tasks"></i><span>Daily Tasks</span></a>
+                            <a href="#"><i class="fa fa-tasks"></i><span>Feed</span></a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-file-text"></i><span>My Notes</span></a>
+                            <a href="#"><i class="fa fa-tasks"></i><span>To-dos</span></a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-newspaper-o"></i><span>My Stories</span></a>
+                            <a href="#"><i class="fa fa-file-text"></i><span>Notes</span></a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-envelope"></i><span>My Messages</span></a>
+                            <a href="#"><i class="fa fa-newspaper-o"></i><span>Stories</span></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-envelope"></i><span>Messages</span></a>
                         </li>
                     </ul>
                 </div>
