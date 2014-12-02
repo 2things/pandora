@@ -174,7 +174,7 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'makaryan.gevorg@mail.ru', 'toktik', 'abc');
+INSERT INTO `user` VALUES ('1', 'makaryan.gevorg@mail.ru', 'toktik', 'abc'); 
 INSERT INTO `user` VALUES ('4', 'makaryan.gevorg@mail.com', 'toktik22', '8787');
 INSERT INTO `user` VALUES ('5', 'makaryan.gevorg1@mail.ru', 'toktik2', '123123');
 INSERT INTO `user` VALUES ('6', 'makaryan.gevorg2@mail.ru', 'toktik3', 'c20ad4d76fe97759aa27a0c99bff6710');
