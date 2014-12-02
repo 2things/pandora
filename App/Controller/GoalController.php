@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use App\Model\User;
+use App\Model\Goal;
+
 class GoalController extends \System\HttpFrontController
 {
     public function __construct()
@@ -12,11 +15,23 @@ class GoalController extends \System\HttpFrontController
             $this->redirect('/');
         }
     }
+
+    //Get category list
+    public function getCategoriesAction(){
+        $categoryModel = new \App\Model\Category();
+
+        $categories = $categoryModel->getAll();
+
+        $this->getView()->renderJson(array('status' => 1, 'categories' => $categories));
+    }
     
     public function addgoalAction()
     {
-        $title   = (isset($this->getInputStream()->title)) ? $this->getInputStream()->title : $this->getPost('title');
-        $me          = \App\Model\User::getMe();
+        $me           = \App\Model\User::getMe();
+        $title        = (isset($this->getInputStream()->title)) ? $this->getInputStream()->title : $this->getPost('title');
+        $description  = (isset($this->getInputStream()->description)) ? $this->getInputStream()->description : $this->getPost('description');
+        $img_attach   = (isset($this->getInputStream()->img_attach)) ? $this->getInputStream()->img_attach : $this->getPost('img_attach');
+        $categoryList = (isset($this->getInputStream()->category)) ? $this->getInputStream()->category : $this->getPost('category');
         $translation = $this->getTranslation()->get('eng');
         
         if (empty($title)) {
@@ -29,9 +44,16 @@ class GoalController extends \System\HttpFrontController
         
         $goalModel = new \App\Model\Goal();
         try {
-            $result = $goalModel->addGoal($me['id'], $taskTitle);
+            //get new added goal id
+            $result = $goalModel->addGoal($me['id'], $title, $description, $img_attach);
+
+            if(!empty($categoryList) && !empty($result)){
+                $goalModel->addGoalCategoriesRelation($categoryList, $result);
+            }
+
             $this->getView()->renderJson(array('status' => 1, 'html' => '', 'data' => $result));
-        } catch (System\Exception\ModelException $e) {
+
+        } catch (\System\Exception\ModelException $e) {
             $this->getView()->renderJson(array('status' => -1, 'html' => $translation['common']));
         }
         
