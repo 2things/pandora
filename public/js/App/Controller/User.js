@@ -21,7 +21,7 @@ app.controller('UserController', ['$scope', '$http', function($scope, $http) {
             },
             'http': {
                 'method': 'POST',
-                'url': 'http://fastphpeplanner/user/login'
+                'url': '/user/login'
             },
             'doLogin': function (event) {
                 event.preventDefault();
@@ -72,7 +72,7 @@ app.controller('UserController', ['$scope', '$http', function($scope, $http) {
             },
             'http': {
                 'method': 'POST',
-                'url': 'http://fastphpeplanner/user/signup'
+                'url': '/user/signup'
             },
             'doSignup': function (event) {
                 event.preventDefault();
