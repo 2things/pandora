@@ -17,12 +17,13 @@ class GoalController extends \System\HttpFrontController
     }
 
     //Get category list
-    public function getCategoriesAction(){
+    public function getcategoriesAction()
+    {
         $categoryModel = new \App\Model\Category();
 
         $categories = $categoryModel->getAll();
-
-        $this->getView()->renderJson(array('status' => 1, 'categories' => $categories));
+        
+        $this->getView()->renderJson(array('status' => 1, 'data' => $categories, 'html' => ''));
     }
     
     public function addgoalAction()

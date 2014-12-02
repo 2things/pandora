@@ -4,7 +4,7 @@ namespace App\Model;
 
 class Category extends \System\Model
 {
-    public static $table = 'categories';
+    public static $table = 'goal_categories';
     
     public function getAll()
     {
@@ -14,7 +14,7 @@ class Category extends \System\Model
             $db = $this->getDb();
             $sth = $db->prepare($sql);
             $sth->execute();
-            return $sth->fetch(\PDO::FETCH_ASSOC);
+            return $sth->fetchAll(\PDO::FETCH_ASSOC);
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }

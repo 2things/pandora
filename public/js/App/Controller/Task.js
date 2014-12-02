@@ -33,7 +33,7 @@ app.controller('TaskController', ['$scope', '$http', function($scope, $http) {
         $scope.getTasks = function (dbOffset) {
             $http({
                 method: 'POST',
-                url: 'task/ajaxloadmoretasks',
+                url: '/task/ajaxloadmoretasks',
                 data: {
                     'dboffset': dbOffset
                 }
