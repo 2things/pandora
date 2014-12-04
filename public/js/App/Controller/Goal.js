@@ -10,8 +10,14 @@
  */
 app.controller('GoalController', ['$scope', '$http', function($scope, $http) {
         $scope.categories = [];
+        $scope.goalTitle = '';
+        $scope.selectedCategories = [];
         
         $scope.getCategories = function () {
+            if (!$scope.goalTitle) {
+                return false;
+            }
+            
             $http({
                 'method': 'POST',
                 'url': '/goal/getcategories'
@@ -26,7 +32,26 @@ app.controller('GoalController', ['$scope', '$http', function($scope, $http) {
             });;
         };
         
+        $scope.fillSelectedCategory = function (categoryId, isCategorySelected) {
+            var i = --categoryId;
+            if (!$scope.categories[i]) {
+                return false;
+            }
+            
+            if (isCategorySelected) {
+                $scope.selectedCategories.push($scope.categories[i]);
+            } else {
+                $scope.selectedCategories.splice(i, 1);
+            }
+        };
+        
+        $scope.postGoal = function () {
+            console.log($scope.selectedCategories);
+        };
+        
         $scope.add = function () {
             
         }
+        
+        
 }]);

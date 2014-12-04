@@ -34,13 +34,17 @@
 <div data-ng-app="app" data-ng-controller="GoalController">
 <div class="main-content">
     <div class="share-goal">
-        <span class="action-title">I want to:</span>&nbsp;<input type="text" name="my-goal" class="my-goal"/><button class="add-button" data-ng-click="getCategories()">Add</button>
+        <span class="action-title">I want to:</span>&nbsp;<input data-ng-model="goalTitle" type="text" name="my-goal" class="my-goal"/><button class="add-button" data-ng-click="getCategories()">Add</button>
     </div>
     {literal}
     <div data-ng-show="categories">
         <ul>
             <li data-ng-repeat="category in categories">
-                {{ category }}
+                <input checkbox-group type="checkbox" name="category-item"  data-ng-click="fillSelectedCategory(category.id, !isCategorySelected)" data-ng-model="isCategorySelected" value="{{category.id}}" id="category-item-{{category.id}}">
+                <label for="category-item-{{category.id}}">{{ category.name }}</label>
+            </li>
+            <li>
+                <button data-ng-click="postGoal()">Post</button>
             </li>
         </ul>
     </div>

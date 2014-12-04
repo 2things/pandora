@@ -1,9 +1,13 @@
 <?php
-
 namespace App\Controller;
-use System;
 
-class errorController extends System\HttpFrontController
+use System;
+/**
+ * UserController class
+ * 
+ * @author Gevorg Makaryan <makaryan.gevorg@gmail.com>
+ */
+class ErrorController extends \System\HttpFrontController
 {
     public function error404Action()
     {
