@@ -40,7 +40,7 @@
     <div data-ng-show="categories">
         <ul>
             <li data-ng-repeat="category in categories">
-                <input checkbox-group type="checkbox" name="category-item"  data-ng-click="fillSelectedCategory(category.id, !isCategorySelected)" data-ng-model="isCategorySelected" value="{{category.id}}" id="category-item-{{category.id}}">
+                <input type="checkbox" name="category-item"  data-ng-click="fillSelectedCategory(category.id, !isCategorySelected)" data-ng-model="isCategorySelected" value="{{category.id}}" id="category-item-{{category.id}}">
                 <label for="category-item-{{category.id}}">{{ category.name }}</label>
             </li>
             <li>

@@ -46,12 +46,19 @@ app.controller('GoalController', ['$scope', '$http', function($scope, $http) {
         };
         
         $scope.postGoal = function () {
-            console.log($scope.selectedCategories);
-        };
-        
-        $scope.add = function () {
-            
-        }
-        
+                        
+            $http({
+                method: 'POST',
+                url: '/goal/post',
+                data: {
+                    'title': $scope.goalTitle,
+                    'categories': $scope.selectedCategories,
+                }
+            }).success(function (response) {
+                
+            }).error(function (data, status) {
+                window.location.href = '/error/error500';
+            });
+        };       
         
 }]);
