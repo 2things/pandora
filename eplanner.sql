@@ -4,13 +4,13 @@ Navicat MySQL Data Transfer
 Source Server         : local_db
 Source Server Version : 50611
 Source Host           : 127.0.0.1:3306
-Source Database       : eplanner_new
+Source Database       : pandora
 
 Target Server Type    : MYSQL
 Target Server Version : 50611
 File Encoding         : 65001
 
-Date: 2014-12-02 17:00:25
+Date: 2014-12-09 18:30:49
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -21,21 +21,26 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `goal`;
 CREATE TABLE `goal` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `owner_id` int(11) NOT NULL,
+  `profile_id` int(11) NOT NULL,
   `title` text CHARACTER SET utf8 NOT NULL,
-  `description` text CHARACTER SET utf8,
-  `img_attach` longblob,
   `created_date` timestamp NULL DEFAULT NULL,
   `updated_date` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `status` tinyint(3) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
-  KEY `owner_id` (`owner_id`),
-  CONSTRAINT `owner_id` FOREIGN KEY (`owner_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  KEY `owner_id` (`profile_id`),
+  CONSTRAINT `owner_id` FOREIGN KEY (`profile_id`) REFERENCES `profile` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of goal
 -- ----------------------------
+INSERT INTO `goal` VALUES ('3', '1', 'sdsd', null, null, '0');
+INSERT INTO `goal` VALUES ('4', '1', 'sdsd', null, null, '0');
+INSERT INTO `goal` VALUES ('5', '1', 'sdsd', null, null, '0');
+INSERT INTO `goal` VALUES ('6', '1', 'sdsd', null, null, '0');
+INSERT INTO `goal` VALUES ('7', '1', 'sdsd', null, null, '0');
+INSERT INTO `goal` VALUES ('8', '1', 'sdsds', null, null, '0');
+INSERT INTO `goal` VALUES ('9', '1', 'asdasdasd', null, null, '0');
 
 -- ----------------------------
 -- Table structure for `goal_categories`
@@ -97,11 +102,11 @@ CREATE TABLE `profile` (
   `website_url` varchar(250) DEFAULT NULL,
   `fb_url` varchar(250) DEFAULT NULL,
   `twitter_url` varchar(250) DEFAULT NULL,
-  `followers` int(11) DEFAULT NULL,
-  `followings` int(11) DEFAULT NULL,
-  `wishlist` int(11) DEFAULT NULL,
-  `goals` int(11) DEFAULT NULL,
-  `likes` int(11) DEFAULT NULL,
+  `followers` int(11) NOT NULL DEFAULT '0',
+  `followings` int(11) NOT NULL DEFAULT '0',
+  `wishlist` int(11) NOT NULL DEFAULT '0',
+  `goals` int(11) NOT NULL DEFAULT '0',
+  `likes` int(11) NOT NULL DEFAULT '0',
   `profession` int(11) DEFAULT NULL,
   `birth_date` date DEFAULT NULL,
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -115,8 +120,8 @@ CREATE TABLE `profile` (
 -- ----------------------------
 -- Records of profile
 -- ----------------------------
-INSERT INTO `profile` VALUES ('1', '9', null, null, null, null, null, null, null, null, null, null, null, null, null, '2014-10-24 14:30:15', null, 'individual');
-INSERT INTO `profile` VALUES ('2', '10', null, null, null, null, null, null, null, null, null, null, null, null, null, '2014-10-24 14:37:13', null, 'individual');
+INSERT INTO `profile` VALUES ('1', '7', null, null, null, null, null, null, '0', '0', '0', '5', '0', null, null, '2014-10-24 14:30:15', null, 'individual');
+INSERT INTO `profile` VALUES ('2', '10', null, null, null, null, null, null, '0', '0', '0', '0', '0', null, null, '2014-10-24 14:37:13', null, 'individual');
 
 -- ----------------------------
 -- Table structure for `relation_goals_categories`
@@ -131,11 +136,20 @@ CREATE TABLE `relation_goals_categories` (
   KEY `g_id` (`goal_id`),
   CONSTRAINT `cat_id` FOREIGN KEY (`category_id`) REFERENCES `goal_categories` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `g_id` FOREIGN KEY (`goal_id`) REFERENCES `goal` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of relation_goals_categories
 -- ----------------------------
+INSERT INTO `relation_goals_categories` VALUES ('1', '6', '6');
+INSERT INTO `relation_goals_categories` VALUES ('2', '7', '6');
+INSERT INTO `relation_goals_categories` VALUES ('3', '31', '6');
+INSERT INTO `relation_goals_categories` VALUES ('4', '6', '7');
+INSERT INTO `relation_goals_categories` VALUES ('5', '7', '7');
+INSERT INTO `relation_goals_categories` VALUES ('6', '31', '7');
+INSERT INTO `relation_goals_categories` VALUES ('7', '1', '8');
+INSERT INTO `relation_goals_categories` VALUES ('8', '12', '8');
+INSERT INTO `relation_goals_categories` VALUES ('9', '1', '9');
 
 -- ----------------------------
 -- Table structure for `task`
@@ -174,7 +188,7 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'makaryan.gevorg@mail.ru', 'toktik', 'abc'); 
+INSERT INTO `user` VALUES ('1', 'makaryan.gevorg@mail.ru', 'toktik', 'abc');
 INSERT INTO `user` VALUES ('4', 'makaryan.gevorg@mail.com', 'toktik22', '8787');
 INSERT INTO `user` VALUES ('5', 'makaryan.gevorg1@mail.ru', 'toktik2', '123123');
 INSERT INTO `user` VALUES ('6', 'makaryan.gevorg2@mail.ru', 'toktik3', 'c20ad4d76fe97759aa27a0c99bff6710');
@@ -182,6 +196,17 @@ INSERT INTO `user` VALUES ('7', 'test.user@mail.ru', 'test', '098f6bcd4621d373ca
 INSERT INTO `user` VALUES ('8', 'marashlyan.suren@mail.ru', 'suren', '202cb962ac59075b964b07152d234b70');
 INSERT INTO `user` VALUES ('9', 'mak.gev@mail.com', 'gevorg', '54eb9c413fd20404c0e4da1b5eb41bf6');
 INSERT INTO `user` VALUES ('10', 'ms@mail.ru', 'gevorg1', 'af4599c4ddc76d02e8114774f196c0e4');
+DROP TRIGGER IF EXISTS `goal_count_updater`;
+DELIMITER ;;
+CREATE TRIGGER `goal_count_updater` AFTER INSERT ON `goal` FOR EACH ROW BEGIN
+
+ UPDATE profile
+    SET  profile.goals = profile.goals + 1
+        WHERE profile.id = NEW.profile_id;
+
+END
+;;
+DELIMITER ;
 DROP TRIGGER IF EXISTS `create_profile`;
 DELIMITER ;;
 CREATE TRIGGER `create_profile` AFTER INSERT ON `user` FOR EACH ROW BEGIN
