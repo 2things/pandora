@@ -31,7 +31,7 @@
     }
     
 </style>
-<div data-ng-app="app" data-ng-controller="GoalController">
+<div data-ng-app="app" data-ng-controller="GoalController" data-ng-init="getGoals(0)">
 <div class="main-content">
     <div class="share-goal">
         <span class="action-title">I want to:</span>&nbsp;<input data-ng-model="goalTitle" type="text" name="my-goal" class="my-goal"/><button class="add-button" data-ng-click="getCategories()">Add</button>
@@ -51,6 +51,14 @@
     {/literal}
 </div>
 <div class="main-content">
-    
+    {literal}
+    <div class="goal-list">
+        <ul>
+            <li data-ng-repeat="goal in goalList">
+                {{ goal }}
+            </li>
+        </ul>
+    </div>
+    {/literal}
 </div>
 </div>

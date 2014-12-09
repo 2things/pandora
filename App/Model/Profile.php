@@ -4,7 +4,12 @@ namespace App\Model;
 
 class Profile extends \System\Model
 {
-    protected static $table = 'profile';
+    private static $table = 'profile';
+    
+    public static function getTable()
+    {
+        return self::$table;
+    }
     
     protected $data = array(
         'id' => null,

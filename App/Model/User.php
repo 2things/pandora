@@ -16,6 +16,13 @@ class User extends \System\Model
     
     public static $me;
     
+    private static $table = 'user';
+    
+    public static function getTable()
+    {
+        return self::$table;
+    }
+    
     public function __construct($data = null) 
     {
         parent::__construct();
@@ -65,7 +72,13 @@ class User extends \System\Model
     {
         session_destroy();
         session_start();
-        $_SESSION['user'] = self::$me = array('username' => $this->username, 'email' => $this->email, 'id' => $this->id);
+        
+        $sql = 'SELECT * FROM profile WHERE user_id = :userId';
+        $db  = $this->getDb();
+        $sth = $db->prepare($sql);
+        $sth->execute(array('userId' => $this->id));
+        $profiles = $sth->fetchAll(\PDO::FETCH_ASSOC);
+        $_SESSION['user'] = self::$me = array('username' => $this->username, 'email' => $this->email, 'id' => $this->id, 'profiles' => $profiles);
     }
     
     public function login()
@@ -73,7 +86,12 @@ class User extends \System\Model
         $me = $this->getUserByUsername($this->username);
         session_destroy();
         session_start();
-        $_SESSION['user'] = self::$me = array('username' => $me['username'], 'email' => $me['email'], 'id' => $me['id']);
+        $sql = 'SELECT * FROM profile WHERE user_id = :userId';
+        $db  = $this->getDb();
+        $sth = $db->prepare($sql);
+        $sth->execute(array('userId' => $me['id']));
+        $profiles = $sth->fetchAll(\PDO::FETCH_ASSOC);
+        $_SESSION['user'] = self::$me = array('username' => $me['username'], 'email' => $me['email'], 'id' => $me['id'], 'profiles' => $profiles);
     }
     
     public function insert()
@@ -155,5 +173,19 @@ class User extends \System\Model
          * @todo to not use $_SESSION global variable
          */
         return (self::isAuthorized()) ? $_SESSION['user'] : false;
+    }
+    
+    public static function getProfile($profile = null)
+    {
+        $defaultProfile = 0;
+        
+        $me = self::getMe();
+        if (!$me) {
+            return;
+        }
+        
+        if (!$profile) {
+            return $me['profiles'][$defaultProfile];
+        }
     }
 }

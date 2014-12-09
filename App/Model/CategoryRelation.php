@@ -4,7 +4,12 @@ namespace App\Model;
 
 class CategoryRelation extends \System\Model
 {
-    public static $table = 'relation_goals_categories';
+    private static $table = 'relation_goals_categories';
+    
+    public static function getTable()
+    {
+        return self::$table;
+    }
     
     public function addGoalCategoriesRelation($categoryList, $goalId)
     {

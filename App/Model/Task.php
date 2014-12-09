@@ -4,7 +4,12 @@ namespace App\Model;
 
 class Task extends \System\Model
 {
-    protected static $table = 'task';
+    private static $table = 'task';
+    
+    public static function getTable()
+    {
+        return self::$table;
+    }
     
     protected static $taskStatuses = array(
         'inprogress' => 0,

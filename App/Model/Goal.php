@@ -4,7 +4,14 @@ namespace App\Model;
 
 class Goal extends \System\Model
 {
-    public static $table = 'goal';
+    private static $dbLimit = 20;
+    
+    private static $table = 'goal';
+    
+    public static function getTable()
+    {
+        return self::$table;
+    }
     
     protected static $goalStatuses = array(
         'inprogress' => 0,
@@ -13,9 +20,9 @@ class Goal extends \System\Model
     
     protected static $selectLimit = 20;
     
-    public function addGoal($userId, $title)
+    public function addGoal($profileId, $title)
     {
-        if (!is_numeric($userId)) {
+        if (!is_numeric($profileId)) {
             throw new \System\Exception\ModelException('worg value was provided for userId.');
         }
         
@@ -23,17 +30,46 @@ class Goal extends \System\Model
             throw new \System\Exception\ModelException('The string-length of task title exceeds allowable length.');
         }
         
-        $sql = 'INSERT INTO ' . self::$table . ' (user_id, title) VALUES (:userId, :title)';
-        var_dump('INSERT INTO ' . self::$table . ' (user_id, title) VALUES (' . $userId . ', "'. $title .'")'); exit;
+        $sql = 'INSERT INTO ' . self::$table . ' (profile_id, title) VALUES (:profileId, :title)';
+        
         try {
             $db = $this->getDb();
             $sth = $db->prepare($sql);
-            $sth->execute(array('userId' => $userId, 'title' => $title));
+            $sth->execute(array('profileId' => $profileId, 'title' => $title));
             $lastInsertedGoal = $db->lastInsertId();
         } catch (\System\Exception\DbException $e) {
             throw new \System\Exception\ModelException($e->getMessage());
         }
         
         return $lastInsertedGoal;
+    }
+    
+    /**
+     * Gets the list of recently added goals
+     * 
+     * @param int $dbOffset database limit offser
+     * @param array $constrains constrains e.g. table name when joining to another tabel
+     */
+    public function getGoals($dbOffset, $constrains)
+    {
+        if (!isset($constrains['table']) || empty($constrains['table'])) {
+            return;
+        }
+        
+        $tableToJoin = $constrains['table'];
+        $sql = 'SELECT origin.id AS goal_id, origin.profile_id, origin.title, secondary.avatar, secondary.name '
+                . 'FROM ' . self::$table . ' AS origin '
+                . 'JOIN ' . $tableToJoin . ' AS secondary '
+                . 'ON origin.profile_id = secondary.id '
+                . 'ORDER BY origin.id ASC '
+                . 'LIMIT :offset, :limit';
+
+        $db  = $this->getDb();
+        $sth = $db->prepare($sql);
+        $sth->bindParam(':offset', $dbOffset, \PDO::PARAM_INT);
+        $sth->bindParam(':limit', self::$dbLimit, \PDO::PARAM_INT);
+        $sth->execute();
+
+        return $sth->fetchAll(\PDO::FETCH_ASSOC);
     }
 }

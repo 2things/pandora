@@ -4,8 +4,13 @@ namespace App\Model;
 
 class Category extends \System\Model
 {
-    public static $table = 'goal_categories';
+    private static $table = 'goal_categories';
     
+    public static function getTable()
+    {
+        return self::$table;
+    }
+
     public function getAll()
     {
         $sql = 'SELECT * FROM ' . self::$table;

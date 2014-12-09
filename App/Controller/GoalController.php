@@ -163,7 +163,7 @@ class GoalController extends \System\HttpFrontController
     
     public function postAction()
     {
-        $me          = \App\Model\User::getMe();
+        $me          = \App\Model\User::getProfile();
         $title       = trim((isset($this->getInputStream()->title)) ? $this->getInputStream()->title : $this->getPost('title'));
         $categories  = json_decode(json_encode((isset($this->getInputStream()->categories)) ? $this->getInputStream()->categories : $this->getPost('categories')), true);
         $translation = $this->getTranslation()->get('eng');
@@ -185,7 +185,6 @@ class GoalController extends \System\HttpFrontController
         
         try {
             $goalId = $goalModel->addGoal($me['id'], $title);
-            var_dump($goalId); exit;
         } catch (\System\Exception\ModelException $e) {
             $this->getView()->renderJson(array('status' => -1, 'html' => $translation['common']));
         }
@@ -197,5 +196,23 @@ class GoalController extends \System\HttpFrontController
         }
         
         $this->getView()->renderJson(array('status' => 1, 'data' => '', 'html' => ''));
+    }
+    
+    public function getlistAction()
+    {
+        $offset     = (isset($this->getInputStream()->offset)) ? $this->getInputStream()->offset : $this->getPost('offset');
+        $constrains = array('table' => \App\Model\Profile::getTable());
+        
+        $goalModel = new \App\Model\Goal();
+        $result = $goalModel->getGoals($offset, $constrains);
+        
+        if (!$result || empty($result)) {
+            /**
+             * show error
+             */
+            $this->getView()->renderJson(array('status' => -1, 'data' => '', 'html' => ''));
+        }
+        
+        $this->getView()->renderJson(array('status' => 1, 'data' => $result, 'html' => ''));
     }
 }
