@@ -59,7 +59,7 @@ app.controller('GoalController', ['$scope', '$http', function($scope, $http) {
                     $scope.categories = [];
                     $scope.goalTitle = '';
                     $scope.selectedCategories = [];
-
+                    $scope.goalList.unshift(response.data);
                 } else {
                     // show error
                 }

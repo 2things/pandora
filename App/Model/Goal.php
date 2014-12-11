@@ -48,7 +48,7 @@ class Goal extends \System\Model
      * Gets the list of recently added goals
      * 
      * @param int $dbOffset database limit offser
-     * @param array $constrains constrains e.g. table name when joining to another tabel
+     * @param array $constrains constrains e.g. table name (in this case table is profile table) when joining to another tabel
      */
     public function getGoals($dbOffset, $constrains)
     {
@@ -57,11 +57,11 @@ class Goal extends \System\Model
         }
         
         $tableToJoin = $constrains['table'];
-        $sql = 'SELECT origin.id AS goal_id, origin.profile_id, origin.title, secondary.avatar, secondary.name '
+        $sql = 'SELECT origin.id AS goal_id, origin.profile_id, origin.title, secondary.username, secondary.avatar, secondary.name '
                 . 'FROM ' . self::$table . ' AS origin '
                 . 'JOIN ' . $tableToJoin . ' AS secondary '
                 . 'ON origin.profile_id = secondary.id '
-                . 'ORDER BY origin.id ASC '
+                . 'ORDER BY origin.id DESC '
                 . 'LIMIT :offset, :limit';
 
         $db  = $this->getDb();

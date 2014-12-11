@@ -55,7 +55,11 @@
     <div class="goal-list">
         <ul>
             <li data-ng-repeat="goal in goalList">
-                {{ goal }}
+                <img src="/images/avatars/{{ (goal.avatar) ? goal.avatar : 'default.png' }}"/>
+                <div>
+                    <p>{{ goal.title }}</p>
+                    <span>{{ (goal.name) ? goal.name + '&nbsp|&nbsp;' : '' }}{{ '@' + goal.username }}</span>
+                </div>
             </li>
         </ul>
     </div>

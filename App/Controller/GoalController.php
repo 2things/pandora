@@ -195,7 +195,15 @@ class GoalController extends \System\HttpFrontController
             $this->getView()->renderJson(array('status' => -1, 'html' => $translation['common']));
         }
         
-        $this->getView()->renderJson(array('status' => 1, 'data' => '', 'html' => ''));
+        $justAddedGoal = array(
+            'goal_id'    => $goalId,
+            'profile_id' => $me['id'],
+            'title'      => $title,
+            'avatar'     => $me['avatar'],
+            'name'       => $me['name']
+        );
+        
+        $this->getView()->renderJson(array('status' => 1, 'data' => $justAddedGoal, 'html' => ''));
     }
     
     public function getlistAction()
